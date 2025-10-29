@@ -28,9 +28,9 @@ const Navbar = () => {
               Home
             </Link>
             <Link to="/retirement" className="text-gray-700 hover:text-primary-600 px-3 py-2 font-medium">
-              Retirement Basics
+              Investing 101
             </Link>
-            <Link to="/account-types" className="text-gray-700 hover:text-primary-600 px-3 py-2 font-medium">
+            {/* <Link to="/account-types" className="text-gray-700 hover:text-primary-600 px-3 py-2 font-medium">
               Account Types
             </Link>
             <Link to="/investment-options" className="text-gray-700 hover:text-primary-600 px-3 py-2 font-medium">
@@ -38,11 +38,16 @@ const Navbar = () => {
             </Link>
             <Link to="/strategies" className="text-gray-700 hover:text-primary-600 px-3 py-2 font-medium">
               Strategies
-            </Link>
+            </Link> */}
+
+            {user && (
+              <Link to="/dashboard" className="text-gray-700 hover:text-primary-600 px-3 py-2 font-medium">
+                Dashboard
+              </Link>
+            )}
             
             {user ? (
               <div className="flex items-center space-x-4">
-                <span className="text-gray-700">Hello, {user.email}</span>
                 <button onClick={handleSignOut} className="btn-secondary">
                   Sign Out
                 </button>
@@ -83,6 +88,15 @@ const Navbar = () => {
             >
               Home
             </Link>
+            {user && (
+              <Link
+                to="/dashboard"
+                className="block text-gray-700 hover:text-primary-600 hover:bg-gray-50 px-3 py-2 rounded-md font-medium"
+                onClick={() => setIsOpen(false)}
+              >
+                Dashboard
+              </Link>
+            )}
             <Link
               to="/retirement"
               className="block text-gray-700 hover:text-primary-600 hover:bg-gray-50 px-3 py-2 rounded-md font-medium"
@@ -114,7 +128,7 @@ const Navbar = () => {
             
             {user ? (
               <>
-                <div className="px-3 py-2 text-gray-700">Hello, {user.email}</div>
+                <div className="px-3 py-2 text-gray-700">Hello, {user.email.split('@')[0]}</div>
                 <button
                   onClick={() => {
                     handleSignOut()

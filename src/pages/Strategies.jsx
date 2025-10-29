@@ -1,9 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import JourneyProgress from '../components/JourneyProgress'
 
 const Strategies = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-12">
+      <JourneyProgress />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-xl shadow-lg p-8 md:p-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -15,7 +17,7 @@ const Strategies = () => {
 
           <div className="space-y-8">
             {/* Strategy 1 */}
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 md:p-8 border-l-4 border-green-600">
+            <div className="bg-linear-to-br from-green-50 to-green-100 rounded-xl p-6 md:p-8 border-l-4 border-green-600">
               <div className="flex items-start">
                 <div className="bg-green-600 rounded-full p-2 mr-4 mt-1">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -46,7 +48,7 @@ const Strategies = () => {
             </div>
 
             {/* Strategy 2 */}
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 md:p-8 border-l-4 border-blue-600">
+            <div className="bg-linear-to-br from-blue-50 to-blue-100 rounded-xl p-6 md:p-8 border-l-4 border-blue-600">
               <div className="flex items-start">
                 <div className="bg-blue-600 rounded-full p-2 mr-4 mt-1">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -77,7 +79,7 @@ const Strategies = () => {
             </div>
 
             {/* Strategy 3 */}
-            <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 md:p-8 border-l-4 border-red-600">
+            <div className="bg-linear-to-br from-red-50 to-red-100 rounded-xl p-6 md:p-8 border-l-4 border-red-600">
               <div className="flex items-start">
                 <div className="bg-red-600 rounded-full p-2 mr-4 mt-1">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -108,7 +110,7 @@ const Strategies = () => {
             </div>
 
             {/* Strategy 4 */}
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 md:p-8 border-l-4 border-purple-600">
+            <div className="bg-linear-to-br from-purple-50 to-purple-100 rounded-xl p-6 md:p-8 border-l-4 border-purple-600">
               <div className="flex items-start">
                 <div className="bg-purple-600 rounded-full p-2 mr-4 mt-1">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -143,7 +145,7 @@ const Strategies = () => {
             </div>
 
             {/* Strategy 5 */}
-            <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl p-6 md:p-8 border-l-4 border-yellow-600">
+            <div className="bg-linear-to-br from-yellow-50 to-yellow-100 rounded-xl p-6 md:p-8 border-l-4 border-yellow-600">
               <div className="flex items-start">
                 <div className="bg-yellow-600 rounded-full p-2 mr-4 mt-1">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -174,7 +176,7 @@ const Strategies = () => {
             </div>
 
             {/* Strategy 6 */}
-            <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-xl p-6 md:p-8 border-l-4 border-teal-600">
+            <div className="bg-linear-to-br from-teal-50 to-teal-100 rounded-xl p-6 md:p-8 border-l-4 border-teal-600">
               <div className="flex items-start">
                 <div className="bg-teal-600 rounded-full p-2 mr-4 mt-1">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -205,7 +207,7 @@ const Strategies = () => {
             </div>
 
             {/* Summary */}
-            <div className="bg-gradient-to-r from-primary-600 to-primary-800 text-white rounded-xl p-8 mt-12">
+            <div className="bg-linear-to-r from-primary-600 to-primary-800 text-white rounded-xl p-8 mt-12">
               <h2 className="text-2xl font-bold mb-4">Quick Summary</h2>
               <div className="grid md:grid-cols-2 gap-4 text-primary-50">
                 <div className="flex items-center">

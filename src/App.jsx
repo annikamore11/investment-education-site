@@ -9,6 +9,7 @@ import AccountTypes from './pages/AccountTypes'
 import InvestmentOptions from './pages/InvestmentOptions'
 import Strategies from './pages/Strategies'
 import Login from './pages/Login'
+import Dashboard from './pages/Dashboard'
 
 function App() {
   return (
@@ -16,9 +17,10 @@ function App() {
       <Router>
         <div className="flex flex-col min-h-screen">
           <Navbar />
-          <main className="flex-grow">
+          <main className="grow">
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/retirement" element={<Retirement />} />
               <Route path="/account-types" element={<AccountTypes />} />
               <Route path="/investment-options" element={<InvestmentOptions />} />

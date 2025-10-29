@@ -1,9 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import JourneyProgress from '../components/JourneyProgress'
 
 const InvestmentOptions = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-12">
+      <JourneyProgress />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-xl shadow-lg p-8 md:p-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -15,7 +17,7 @@ const InvestmentOptions = () => {
 
           <div className="space-y-12">
             {/* Target Date Fund */}
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-8">
+            <div className="bg-linear-to-br from-blue-50 to-blue-100 rounded-xl p-8">
               <div className="flex items-start mb-6">
                 <div className="bg-blue-600 rounded-full p-3 mr-4">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -72,7 +74,7 @@ const InvestmentOptions = () => {
             </div>
 
             {/* Mutual Funds and ETFs */}
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-8">
+            <div className="bg-linear-to-br from-purple-50 to-purple-100 rounded-xl p-8">
               <div className="flex items-start mb-6">
                 <div className="bg-purple-600 rounded-full p-3 mr-4">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

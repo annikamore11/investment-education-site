@@ -8,11 +8,17 @@
     "build": "vite build",
     "preview": "vite preview"
   },
-  "keywords": ["investing", "retirement", "finance", "education"],
+  "keywords": [
+    "investing",
+    "retirement",
+    "finance",
+    "education"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
     "@supabase/supabase-js": "^2.77.0",
+    "@tailwindcss/postcss": "^4.1.16",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.9.5"
