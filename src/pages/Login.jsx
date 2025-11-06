@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
 const Login = () => {
@@ -13,6 +13,16 @@ const Login = () => {
   
   const { signIn, signUp } = useAuth()
   const navigate = useNavigate()
+  const location = useLocation()
+
+  useEffect(() => {
+  const params = new URLSearchParams(location.search);
+  if (params.get('mode') === 'signup') {
+    setIsLogin(false);
+  } else {
+    setIsLogin(true);
+  }
+}, [location.search]);
 
   useEffect(() => {
     const handleEmailVerification = async () => {

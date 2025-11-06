@@ -12,82 +12,52 @@ const JourneyProgress = () => {
   ]
 
   const currentStepIndex = steps.findIndex(step => step.path === location.pathname)
-  const currentStep = currentStepIndex !== -1 ? currentStepIndex + 1 : 1
 
   return (
-    <div className="bg-white shadow-md border-b border-gray-200 sticky top-0 z-40">
-      <div className="max-w-4xl mx-auto px-4 py-4">
-        <div className="flex items-center justify-between mb-2">
-          <h3 className="text-sm font-semibold text-gray-600">Your Learning Journey</h3>
-          <span className="text-sm font-bold text-primary-600">Step {currentStep} of {steps.length}</span>
-        </div>
-
-        {/* Progress Bar */}
-        <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
-          <div 
-            className="bg-accent-green-500 h-2 rounded-full transition-all duration-500"
-            style={{ width: `${(currentStep / steps.length) * 100}%` }}
-          ></div>
-        </div>
-
-        {/* Steps */}
-        <div className="flex justify-between items-center">
+    <div className="bg-white shadow-md border-b border-gray-200 flex justify-center">
+      <div className="max-w-6xl mx-auto px-4">
+        <nav className="flex space-x-2 overflow-x-auto">
           {steps.map((step, index) => {
-            const isCompleted = index < currentStepIndex
-            const isCurrent = index === currentStepIndex
-            const isLocked = index > currentStepIndex
+            const isActive = index === currentStepIndex
+            const isPast = index < currentStepIndex
 
             return (
               <Link
                 key={step.path}
                 to={step.path}
-                className={`flex flex-col items-center flex-1 ${
-                  isLocked ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
+                className={`flex items-center space-x-2 px-6 py-4 border-b-4 transition-all whitespace-nowrap rounded-t-2xl ${
+                  isActive
+                    ? 'border-accent-purple-500 text-accent-purple-600 bg-accent-purple-50'
+                    : isPast
+                    ? 'border-accent-green-500 text-accent-green-600 hover:bg-accent-green-50'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:bg-gray-50'
                 }`}
-                onClick={(e) => isLocked && e.preventDefault()}
               >
-                <div className="flex items-center w-full">
-                  {/* Circle */}
-                  <div
-                    className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all ${
-                      isCompleted
-                        ? 'bg-accent-green-500 text-white'
-                        : isCurrent
-                        ? 'bg-accent-purple-500 text-white ring-4 ring-accent-purple-200'
-                        : 'bg-gray-200 text-gray-500'
-                    }`}
-                  >
-                    {isCompleted ? (
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                      </svg>
-                    ) : (
-                      step.step
-                    )}
-                  </div>
-
-                  {/* Connecting Line */}
-                  {index < steps.length - 1 && (
-                    <div
-                      className={`flex-1 h-1 mx-2 transition-all ${
-                        isCompleted ? 'bg-accent-green-500' : 'bg-gray-200'
-                      }`}
-                    ></div>
+                {/* Step Number Badge */}
+                <div
+                  className={`w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs ${
+                    isActive
+                      ? 'bg-accent-purple-500 text-white'
+                      : isPast
+                      ? 'bg-accent-green-500 text-white'
+                      : 'bg-gray-300 text-gray-600'
+                  }`}
+                >
+                  {isPast ? (
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                    </svg>
+                  ) : (
+                    step.step
                   )}
                 </div>
 
-                {/* Label */}
-                <span
-                  className={`text-xs mt-2 text-center font-medium hidden sm:block ${
-                    isCurrent ? 'text-accent-purple-600' : isCompleted ? 'text-accent-green-600' : 'text-gray-500'
-                  }`}
-                >
-                  {step.name}
-                </span>
+                {/* Step Name */}
+                <span className="font-semibold text-sm">{step.name}</span>
               </Link>
             )
           })}
-        </div>
+        </nav>
       </div>
     </div>
   )

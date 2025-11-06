@@ -1,178 +1,192 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect, useRef } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import { useAuth } from '../context/AuthContext'
+import { Player } from '@lottiefiles/react-lottie-player'
+import plantAnimation from '../assets/growing.json'
 
 const Home = () => {
   const { user } = useAuth()
+  const [currentStep, setCurrentStep] = useState(0)
+  const playerRef = useRef(null)
+  const location = useLocation();
+
+  const steps = [
+    { title: "Open the right accounts" },
+    { title: "Choose the right investments" },
+    { title: "Save the right amount" },
+    { title: "Automate it all" }
+  ]
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (playerRef.current) {
+        playerRef.current.stop()
+        playerRef.current.play()
+      }
+    }, 100) // Small delay ensures player is ready
+    
+    return () => clearTimeout(timer)
+  }, [location.key])  // ← Triggers on navigation
+
+  // 🌱 Sequentially reveal steps
+  useEffect(() => {
+    setCurrentStep(0)
+    const timers = steps.map((_, i) =>
+      setTimeout(() => setCurrentStep(i + 1), (i + 1) * 800)
+    )
+    return () => timers.forEach(clearTimeout)
+  }, [location.key])
+
+  if (user) {
+    return <LoggedInHome user={user} />
+  }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       {/* Hero Section */}
-      <section className="bg-linear-to-r from-primary-600 to-primary-800 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            {user ? (
-              <>
-                <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                  Welcome Back, {user.email.split('@')[0]}! 👋
-                </h1>
-                <p className="text-xl md:text-2xl mb-8 text-primary-100">
-                  Continue your journey to financial freedom
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link to="/dashboard" className="btn-primary">
-                    Go to Dashboard
-                  </Link>
-                  <Link to="/retirement" className="btn-secondary border-white text-gray-500 hover:text-white hover:bg-primary-700">
-                    Continue Learning
-                  </Link>
-                </div>
-              </>
-            ) : (
-              <>
-                <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                  Start Your Investment Journey Today
-                </h1>
-                <p className="text-xl md:text-2xl mb-8 text-primary-100">
-                  Learn the basics of saving and investing for retirement, one step at a time
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link to="/retirement" className="btn-primary bg-white text-primary-600 hover:bg-gray-100">
-                    Get Started
-                  </Link>
-                  <Link to="/login" className="btn-secondary border-white text-white hover:bg-primary-700">
-                    Sign In
-                  </Link>
-                </div>
-              </>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {user && (
-            <div className="mb-16">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Your Quick Stats</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="card bg-linear-to-br from-primary-50 to-primary-100 border-2 border-primary-200">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm text-primary-600 font-semibold">Total Saved</p>
-                      <p className="text-3xl font-bold text-primary-900 mt-2">Coming Soon</p>
-                    </div>
-                    <div className="bg-primary-600 rounded-full p-3">
-                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="card bg-linear-to-br from-blue-50 to-blue-100 border-2 border-blue-200">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm text-blue-600 font-semibold">Calculations Made</p>
-                      <p className="text-3xl font-bold text-blue-900 mt-2">0</p>
-                    </div>
-                    <div className="bg-blue-600 rounded-full p-3">
-                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="card bg-linear-to-br from-purple-50 to-purple-100 border-2 border-purple-200">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm text-purple-600 font-semibold">Days Active</p>
-                      <p className="text-3xl font-bold text-purple-900 mt-2">1</p>
-                    </div>
-                    <div className="bg-purple-600 rounded-full p-3">
-                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Everything You Need to Know
-            </h2>
-            <p className="text-xl text-gray-600">
-              Simple, straightforward guidance for new investors
+      <section className="flex-1 flex items-center justify-center px-4 pt-15 pb-20 min-h-screen">
+        <div className="max-w-6xl w-full">
+          <div className="text-center mb-16 animate-fadeIn">
+            <h1 className="text-5xl md:text-6xl font-bold text-primary-100 mb-6">
+              Start your investment journey today.
+            </h1>
+            <p className="text-xl text-primary-400 mb-4 max-w-2xl mx-auto">
+              We walk you through the first steps... wherever you are in life.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Link to="/account-types" className="card group">
-              <div className="text-primary-600 mb-4">
-                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-2 group-hover:text-primary-600">Types of Accounts</h3>
-              <p className="text-gray-600">
-                Understand 401(k)s, IRAs, and which accounts are right for you
-              </p>
-            </Link>
+          {/* Visual + Steps Section */}
+          <section className="relative pb-15 flex flex-col md:flex-row items-center justify-center gap-16 md:gap-28 px-6 md:px-16">
+            
+            {/* LEFT: Animation + Signup */}
+            <div className="relative flex flex-col items-center w-full md:w-1/2">
+              <div className="absolute inset-0 bg-gradient-to-b from-green-100/30 to-transparent blur-2xl rounded-full"></div>
+              <Player
+                ref={playerRef}
+                autoplay
+                loop={false}
+                keepLastFrame
+                src={plantAnimation}
+                style={{
+                  width: "100%",
+                  maxWidth: "750px",
+                  height: "auto",
+                  transform: "scale(1.15)",
+                }}
+              />
 
-            <Link to="/investment-options" className="card group">
-              <div className="text-primary-600 mb-4">
-                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-2 group-hover:text-primary-600">Investment Options</h3>
-              <p className="text-gray-600">
-                Learn about target date funds, ETFs, mutual funds, and more
-              </p>
-            </Link>
+            </div>
+          
 
-            <Link to="/strategies" className="card group">
-              <div className="text-primary-600 mb-4">
-                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-2 group-hover:text-primary-600">Can't-Miss Strategies</h3>
-              <p className="text-gray-600">
-                Essential strategies every investor should know and follow
-              </p>
-            </Link>
+            {/* RIGHT: Steps */}
+            <div className="flex flex-col space-y-10 max-w-md w-full">
+              {steps.map((step, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{
+                    opacity: currentStep > index ? 1 : 0,
+                    y: currentStep > index ? 0 : 20,
+                  }}
+                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                  className="flex items-start space-x-4"
+                >
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg bg-green-500">
+                    {index + 1}
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg md:text-xl text-primary-100">
+                      {step.title}
+                    </h3>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </section>
 
-            <div className="card bg-primary-50 border-2 border-primary-200">
-              <div className="text-primary-600 mb-4">
-                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-2 text-primary-900">Tools Coming Soon</h3>
-              <p className="text-primary-800">
-                Compound interest calculators, retirement planners, and more
-              </p>
+          <div className="text-center animate-slideUp">
+            <Link
+              to="/journey"
+              className="inline-block bg-gradient-to-r from-accent-green-500 to-accent-green-600 hover:from-accent-green-600 hover:to-accent-green-700 text-white text-2xl font-bold px-12 py-6 rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+            >
+              Get Started
+            </Link>
+          </div>
+
+          
+        </div>
+      </section>
+
+      {/* Not just another course section */}
+      <section className="py-20 bg-gradient-to-br from-accent-green-50 to-accent-purple-50">
+        <div className="max-w-6xl mx-auto text-center px-6">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Not just another investing course.</h2>
+          <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
+            Most sites teach you what investing is. We help you actually do it — step by step, personalized to your goals and income.
+          </p>
+          <div className="grid md:grid-cols-3 gap-8 text-left">
+            <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition">
+              <div className="text-3xl mb-3">🧭</div>
+              <h3 className="font-semibold text-lg text-gray-900 mb-2">Personalized Roadmap</h3>
+              <p className="text-gray-600">Answer a few questions and get a plan tailored to your situation — not generic advice.</p>
+            </div>
+            <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition">
+              <div className="text-3xl mb-3">💬</div>
+              <h3 className="font-semibold text-lg text-gray-900 mb-2">Real Guidance</h3>
+              <p className="text-gray-600">We guide you through opening accounts, choosing funds, and setting up automation — like a real coach.</p>
+            </div>
+            <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition">
+              <div className="text-3xl mb-3">⚡</div>
+              <h3 className="font-semibold text-lg text-gray-900 mb-2">Action-Based</h3>
+              <p className="text-gray-600">Less theory, more doing. We turn confusing finance steps into clear, 5-minute tasks.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-16 bg-gray-100">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Start Learning?</h2>
+      {/* Final CTA */}
+      <section className="py-20 bg-white">
+        <div className="max-w-3xl mx-auto text-center px-6">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            Ready to start growing your wealth?
+          </h2>
           <p className="text-xl text-gray-600 mb-8">
-            Join thousands of young investors taking control of their financial future
+            Join thousands taking control of their financial future
           </p>
-          <Link to="/retirement" className="btn-primary">
-            Begin Your Journey
+          <Link
+            to="/journey"
+            className="inline-block bg-gradient-to-r from-accent-green-500 to-accent-green-600 hover:from-accent-green-600 hover:to-accent-green-700 text-white text-xl font-bold px-10 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+          >
+            Start Your Journey →
           </Link>
+          <p className="text-sm text-gray-500 mt-4">Takes about 10 minutes • No credit card required</p>
+        </div>
+      </section>
+    </div>
+  )
+}
+
+// Logged-in user view
+const LoggedInHome = ({ user }) => {
+  return (
+    <div className="min-h-screen">
+      <section className="bg-gradient-to-r from-accent-purple-600 to-accent-green-600 text-white py-20">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h1 className="text-5xl font-bold mb-4">
+            Welcome Back, {user.email.split('@')[0]}! 👋
+          </h1>
+          <p className="text-xl mb-8 opacity-90">
+            Continue your journey to financial freedom
+          </p>
+          <div className="flex gap-4 justify-center">
+            <Link to="/journey" className="btn-primary bg-white text-accent-purple-600 hover:bg-gray-100">
+              Continue Journey
+            </Link>
+            <Link to="/dashboard" className="btn-secondary border-white text-white hover:bg-white/10">
+              Go to Dashboard
+            </Link>
+          </div>
         </div>
       </section>
     </div>

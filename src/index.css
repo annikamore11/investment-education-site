@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 
+
 @theme {
   /* Gray - Primary */
   --color-primary-50: #f9fafb;
@@ -50,6 +51,42 @@
   --color-accent-green-900: #14532d;
 }
 
+@font-face {
+  font-family: 'Gloock';
+  src: url('./assets/fonts/Gloock-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap; /* Important for performance */
+}
+
+@font-face {
+  font-family: 'Ribes';
+  src: url('./assets/fonts/Gloock.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.7s ease-out;
+}
+
+.static-background {
+  background-image: 
+    url("assets/noisy-background.png"),
+    linear-gradient(to bottom, #100112, #393e48, #6e7a7f, #b1bab9, #fbfefb);
+  background-blend-mode: overlay;
+  background-size: 200px 200px, cover;
+  background-repeat: repeat, no-repeat;
+}
+
+
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -65,32 +102,43 @@
     transform: translateY(0);
   }
 }
-
-.animate-fadeIn {
-  animation: fadeIn 0.5s ease-out;
+@keyframes pulse {
+  0%, 100% { 
+    transform: scale(1);
+  }
+  50% { 
+    transform: scale(1.05);
+  }
 }
 
-.animate-slideUp {
-  animation: slideUp 0.7s ease-out;
-}
+
+
+
+
+
 
 @layer base {
   * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
 
   html, body {
     overflow-x: hidden;
-    max-width: 100vw;
+    max-width: 100%;
   }
 
   body {
-    font-family: 'Times New Roman', Times, serif;
-    width: 100vw;
+    font-family: 'Inter', sans-serif;
+    width: 100%;
+   
+    background-attachment: fixed;
+    min-height: 100%;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    font-family: 'Gloock', sans-serif;
     font-weight: 700;
   }
 }
@@ -98,40 +146,62 @@
 @layer components {
   .btn-primary {
     padding: 0.75rem 1.5rem;
-    background-color: var(--color-accent-purple-600);
+    background-color: var(--color-primary-900);
     color: white;
-    font-weight: 600;
-    border-radius: 0.5rem;
+    border-radius: 9999px;
+    font-family: 'Inter', sans-serif;
     transition: background-color 200ms;
   }
   
   .btn-primary:hover {
-    background-color: var(--color-accent-purple-700);
+    background-color: var(--color-primary-800);
   }
   
   .btn-secondary {
-    padding: 0.75rem 1.5rem;
-    background-color: white;
-    color: var(--color-primary-600);
-    font-weight: 600;
-    border-radius: 0.5rem;
-    border: 2px solid var(--color-primary-600);
-    transition: background-color 200ms;
+    padding: 0.5rem 1.5rem;
+    background: linear-gradient(135deg, var(--color-accent-green-500), var(--color-accent-green-600));
+    color: white;
+    font-family: 'Inter', sans-serif;
+    border-radius: 9999px;
+    border: none;
+    transition: all 200ms;
   }
-  
+
   .btn-secondary:hover {
-    background-color: var(--color-primary-50);
+    background: linear-gradient(135deg, var(--color-accent-green-600), var(--color-accent-green-700));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
   }
   
+  .btn-border {
+    padding: 0.5rem 1.5rem;
+    background: transparent;
+    color: var(--color-accent-green-600);
+    
+    font-family: 'Inter', sans-serif;
+    border: 1px solid var(--color-accent-green-600);
+    border-radius: 9999px; /* makes it pill-shaped */
+    transition: all 200ms ease;
+  }
+
+  .btn-border:hover {
+    color: var(--color-accent-green-700);
+    border: 1px solid var(--color-accent-green-700);
+    transform: translateY(-1px);
+  }
   .card {
-    background-color: white;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+    backdrop-filter: blur(10px);
     border-radius: 0.75rem;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    box-shadow: 0 4px 6px -1px rgb(147 51 234 / 0.1), 0 2px 4px -1px rgb(34 197 94 / 0.06);
     padding: 1.5rem;
-    transition: box-shadow 200ms;
+    border: 1px solid rgba(147, 51, 234, 0.1);
+    transition: all 200ms;
   }
-  
+
   .card:hover {
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    box-shadow: 0 10px 15px -3px rgb(147 51 234 / 0.2), 0 4px 6px -2px rgb(34 197 94 / 0.1);
+    transform: translateY(-2px);
+    border-color: rgba(147, 51, 234, 0.2);
   }
 }

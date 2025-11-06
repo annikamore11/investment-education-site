@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import logoUrl from '../assets/logo/Sprout2.svg';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -13,49 +14,51 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="bg-white shadow-lg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav>
+      <div className="max-w-7xl mx-auto px-4 pt-2">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link to="/" className="flex items-center">
-              <span className="text-2xl font-bold text-primary-600">InvestEd</span>
+            <Link to="/" className="flex items-center space-x-2">
+              <img
+                src={logoUrl}
+                alt="Sprout logo"
+                className="h-6 w-auto object-contain align-middle"
+              />
+              <span className="text-xl font-bold text-primary-100">InvestEd</span>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:space-x-8">
-            <Link to="/" className="text-gray-700 hover:text-primary-600 px-3 py-2 font-medium">
-              Home
+          <div className="hidden md:flex md:items-center md:space-x-4">
+            <Link to="/journey" className="text-primary-100 hover:text-primary-200 px-3 py-2 font-medium">
+              Your Journey
             </Link>
-            <Link to="/retirement" className="text-gray-700 hover:text-primary-600 px-3 py-2 font-medium">
-              Investing 101
+            <Link to="/retirement" className="text-primary-100 hover:text-primary-200 px-3 py-2 font-medium">
+              Learn More
             </Link>
-            {/* <Link to="/account-types" className="text-gray-700 hover:text-primary-600 px-3 py-2 font-medium">
-              Account Types
-            </Link>
-            <Link to="/investment-options" className="text-gray-700 hover:text-primary-600 px-3 py-2 font-medium">
-              Investment Options
-            </Link>
-            <Link to="/strategies" className="text-gray-700 hover:text-primary-600 px-3 py-2 font-medium">
-              Strategies
-            </Link> */}
+            
 
-            {user && (
-              <Link to="/dashboard" className="text-gray-700 hover:text-primary-600 px-3 py-2 font-medium">
-                Dashboard
-              </Link>
-            )}
+            
             
             {user ? (
               <div className="flex items-center space-x-4">
+                <Link to="/dashboard" className="btn-border">
+                  Dashboard
+                </Link>
                 <button onClick={handleSignOut} className="btn-secondary">
                   Sign Out
                 </button>
               </div>
             ) : (
-              <Link to="/login" className="btn-primary">
-                Login
-              </Link>
+              <div className="flex items-center space-x-4">
+                <Link to="/login" className="btn-border">
+                  Login
+                </Link>
+                <Link to="/login?mode=signup" className="btn-secondary">
+                  Sign Up
+                </Link>
+              </div>
+              
             )}
           </div>
 
@@ -63,7 +66,7 @@ const Navbar = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 hover:text-primary-600 focus:outline-none"
+              className="text-primary-100 hover:text-primary-200 focus:outline-none"
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 {isOpen ? (
@@ -83,7 +86,7 @@ const Navbar = () => {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link
               to="/"
-              className="block text-gray-700 hover:text-primary-600 hover:bg-gray-50 px-3 py-2 rounded-md font-medium"
+              className="block text-gray-100 hover:text-primary-200 hover:bg-gray-50 px-3 py-2 rounded-md font-medium"
               onClick={() => setIsOpen(false)}
             >
               Home
@@ -91,7 +94,7 @@ const Navbar = () => {
             {user && (
               <Link
                 to="/dashboard"
-                className="block text-gray-700 hover:text-primary-600 hover:bg-gray-50 px-3 py-2 rounded-md font-medium"
+                className="block text-primary-100 hover:text-primary-200 hover:bg-gray-50 px-3 py-2 rounded-md font-medium"
                 onClick={() => setIsOpen(false)}
               >
                 Dashboard
@@ -99,42 +102,20 @@ const Navbar = () => {
             )}
             <Link
               to="/retirement"
-              className="block text-gray-700 hover:text-primary-600 hover:bg-gray-50 px-3 py-2 rounded-md font-medium"
+              className="block text-primary-100 hover:text-primary-200 hover:bg-gray-50 px-3 py-2 rounded-md font-medium"
               onClick={() => setIsOpen(false)}
             >
-              Retirement Basics
-            </Link>
-            <Link
-              to="/account-types"
-              className="block text-gray-700 hover:text-primary-600 hover:bg-gray-50 px-3 py-2 rounded-md font-medium"
-              onClick={() => setIsOpen(false)}
-            >
-              Account Types
-            </Link>
-            <Link
-              to="/investment-options"
-              className="block text-gray-700 hover:text-primary-600 hover:bg-gray-50 px-3 py-2 rounded-md font-medium"
-              onClick={() => setIsOpen(false)}
-            >
-              Investment Options
-            </Link>
-            <Link
-              to="/strategies"
-              className="block text-gray-700 hover:text-primary-600 hover:bg-gray-50 px-3 py-2 rounded-md font-medium"
-              onClick={() => setIsOpen(false)}
-            >
-              Strategies
+              Investing 101
             </Link>
             
             {user ? (
               <>
-                <div className="px-3 py-2 text-gray-700">Hello, {user.email.split('@')[0]}</div>
                 <button
                   onClick={() => {
                     handleSignOut()
                     setIsOpen(false)
                   }}
-                  className="block w-full text-left text-gray-700 hover:text-primary-600 hover:bg-gray-50 px-3 py-2 rounded-md font-medium"
+                  className="block w-full text-left text-primary-100 hover:text-primary-200 hover:bg-gray-50 px-3 py-2 rounded-md font-medium"
                 >
                   Sign Out
                 </button>
@@ -142,7 +123,7 @@ const Navbar = () => {
             ) : (
               <Link
                 to="/login"
-                className="block text-gray-700 hover:text-primary-600 hover:bg-gray-50 px-3 py-2 rounded-md font-medium"
+                className="block text-primary-100 hover:text-primary-200 hover:bg-gray-50 px-3 py-2 rounded-md font-medium"
                 onClick={() => setIsOpen(false)}
               >
                 Login
