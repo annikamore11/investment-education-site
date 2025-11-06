@@ -45,7 +45,7 @@ const Home = () => {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Hero Section */}
-      <section className="flex-1 flex items-center justify-center px-4 pt-15 pb-20 min-h-screen">
+      <section className="flex-1 flex items-center justify-center px-4 pt-15 pb-20 min-h-screen static-background">
         <div className="max-w-6xl w-full">
           <div className="text-center mb-16 animate-fadeIn">
             <h1 className="text-5xl md:text-6xl font-bold text-primary-100 mb-6">
@@ -57,7 +57,7 @@ const Home = () => {
           </div>
 
           {/* Visual + Steps Section */}
-          <section className="relative pb-15 flex flex-col md:flex-row items-center justify-center gap-16 md:gap-28 px-6 md:px-16">
+          <section className="relative pb-10 lg:pb-15 flex flex-col md:flex-row items-center justify-center gap-16 md:gap-28 px-6 md:px-16">
             
             {/* LEFT: Animation + Signup */}
             <div className="relative flex flex-col items-center w-full md:w-1/2">
@@ -80,7 +80,7 @@ const Home = () => {
           
 
             {/* RIGHT: Steps */}
-            <div className="flex flex-col space-y-10 max-w-md w-full">
+            <div className="flex flex-col space-y-6 lg:space-y-10 max-w-md w-full">
               {steps.map((step, index) => (
                 <motion.div
                   key={index}

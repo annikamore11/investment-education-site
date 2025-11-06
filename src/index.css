@@ -79,7 +79,15 @@
 .static-background {
   background-image: 
     url("assets/noisy-background.png"),
-    linear-gradient(to bottom, #100112, #393e48, #6e7a7f, #b1bab9, #fbfefb);
+    linear-gradient(to bottom, 
+      #0a0008 0%,      /* Deep start */
+      #0a0008 30%,     /* Hold dark for longer */
+      #1a1f28 50%,     /* Subtle mid gray */
+      #2d3540 65%,     /* Smooth transition */
+      #3c434a 80%,     /* Darker lower gray */
+      #5c646c 90%,     /* Medium gray near bottom */
+      #8a9199 100%     /* Muted light gray end */
+    );
   background-blend-mode: overlay;
   background-size: 200px 200px, cover;
   background-repeat: repeat, no-repeat;
