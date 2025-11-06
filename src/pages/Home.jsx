@@ -72,7 +72,7 @@ const Home = () => {
                   width: "100%",
                   maxWidth: "750px",
                   height: "auto",
-                  transform: "scale(1.15)",
+                  transform: "scale(1.3)",
                 }}
               />
 

@@ -77,20 +77,40 @@
 }
 
 .static-background {
-  background-image: 
-    url("assets/noisy-background.png"),
-    linear-gradient(to bottom, 
-      #0a0008 0%,      /* Deep start */
-      #0a0008 30%,     /* Hold dark for longer */
-      #1a1f28 50%,     /* Subtle mid gray */
-      #2d3540 65%,     /* Smooth transition */
-      #3c434a 80%,     /* Darker lower gray */
-      #5c646c 90%,     /* Medium gray near bottom */
-      #8a9199 100%     /* Muted light gray end */
-    );
-  background-blend-mode: overlay;
-  background-size: 200px 200px, cover;
-  background-repeat: repeat, no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.static-background::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    #0a0008 0%,
+    #0a0008 33%,
+    #1a1f28 50%,
+    #2d3540 65%,
+    #4a5158 80%,
+    #8a9199 100%
+  );
+  z-index: 0;
+}
+
+.static-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("assets/noisy-background.png");
+  background-size: 200px 200px;
+  opacity: 0.25; /* adjust texture intensity */
+  mix-blend-mode: overlay;
+  z-index: 1;
+}
+
+.static-background > * {
+  position: relative;
+  z-index: 2;
 }
 
 
