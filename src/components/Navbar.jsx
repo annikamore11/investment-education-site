@@ -14,7 +14,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="bg-zinc-950">
+    <nav className="bg-zinc-950 z-50 fixed top-0 left-0 right-0">
       <div className="max-w-7xl mx-auto px-4 pt-2">
         <div className="flex justify-between h-16">
           <div className="flex items-center">

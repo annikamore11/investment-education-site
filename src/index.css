@@ -77,7 +77,6 @@
 }
 
 .static-background {
-  position: relative;
   overflow: hidden;
 }
 
@@ -150,34 +149,6 @@
   max-width: 55%; /* gives more horizontal room for text */
 }
 
-.static-background-bottom{
-  position: relative;
-  overflow: hidden;
-}
-
-.static-background-bottom::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:#8a9199;
-  z-index: 0;
-}
-
-.static-background-bottom::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url("assets/images/noisy-background.png");
-  background-size: 200px 200px;
-  opacity: 0.25; /* adjust texture intensity */
-  mix-blend-mode: overlay;
-  z-index: 1;
-}
-
-.static-background-bottom > * {
-  position: relative;
-  z-index: 2;
-}
 
 
 
@@ -253,7 +224,7 @@
   }
   
   .btn-secondary {
-    padding: 0.75rem 1.5rem;
+    padding: 0.5rem 1.5rem;
     background: linear-gradient(135deg, var(--color-accent-green-500), var(--color-accent-green-600));
     color: white;
     font-family: 'Inter', sans-serif;
