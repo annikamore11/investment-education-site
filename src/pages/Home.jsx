@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useAuth } from '../context/AuthContext'
 import { Player } from '@lottiefiles/react-lottie-player'
-import plantAnimation from '../assets/growing.json'
+import plantAnimation from '../assets/animations/growing.json'
 
 const Home = () => {
   const { user } = useAuth()
@@ -61,7 +61,7 @@ const Home = () => {
             
             {/* LEFT: Animation + Signup */}
             <div className="relative flex flex-col items-center w-full md:w-1/2">
-              <div className="absolute inset-0 bg-gradient-to-b from-green-100/30 to-transparent blur-2xl rounded-full"></div>
+              <div className="absolute inset-0 bg-linear-to-b from-green-100/30 to-transparent blur-2xl rounded-full"></div>
               <Player
                 ref={playerRef}
                 autoplay
@@ -92,7 +92,7 @@ const Home = () => {
                   transition={{ duration: 0.2, ease: "easeInOut" }}
                   className="flex items-start space-x-4"
                 >
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg bg-green-500">
+                  <div className="shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg bg-green-500">
                     {index + 1}
                   </div>
                   <div>
@@ -108,7 +108,8 @@ const Home = () => {
           <div className="text-center animate-slideUp">
             <Link
               to="/journey"
-              className="inline-block bg-gradient-to-r from-accent-green-500 to-accent-green-600 hover:from-accent-green-600 hover:to-accent-green-700 text-white text-2xl font-bold px-12 py-6 rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+              className="inline-block bg-linear-to-r from-accent-green-500 to-accent-green-600 hover:from-accent-green-600 hover:to-accent-green-700 text-primary-100 
+              font-bold text-xl px-10 py-4 rounded-xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
             >
               Get Started
             </Link>
@@ -118,35 +119,37 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Not just another course section */}
-      <section className="py-20 bg-gradient-to-br from-accent-green-50 to-accent-purple-50">
-        <div className="max-w-6xl mx-auto text-center px-6">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Not just another investing course.</h2>
-          <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
-            Most sites teach you what investing is. We help you actually do it — step by step, personalized to your goals and income.
-          </p>
-          <div className="grid md:grid-cols-3 gap-8 text-left">
-            <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition">
-              <div className="text-3xl mb-3">🧭</div>
-              <h3 className="font-semibold text-lg text-gray-900 mb-2">Personalized Roadmap</h3>
-              <p className="text-gray-600">Answer a few questions and get a plan tailored to your situation — not generic advice.</p>
-            </div>
-            <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition">
-              <div className="text-3xl mb-3">💬</div>
-              <h3 className="font-semibold text-lg text-gray-900 mb-2">Real Guidance</h3>
-              <p className="text-gray-600">We guide you through opening accounts, choosing funds, and setting up automation — like a real coach.</p>
-            </div>
-            <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition">
-              <div className="text-3xl mb-3">⚡</div>
-              <h3 className="font-semibold text-lg text-gray-900 mb-2">Action-Based</h3>
-              <p className="text-gray-600">Less theory, more doing. We turn confusing finance steps into clear, 5-minute tasks.</p>
+      <section className="money-image-background flex items-center min-h-[60vh]">
+        <div className="content mx-2">
+          <div className="max-w-3xl text-left px-8">
+            <h2 className="text-4xl font-bold mb-4">
+              Bridging the gap between learning and doing.
+            </h2>
+            <p className="text-lg mb-6 text-primary-100 leading-relaxed">
+              Our platform was built to make investing accessible, not intimidating. 
+              We've seen how difficult it was for friends and family to actually open and fund accounts, 
+              which is why we focus on guidance, simplicity, and action.
+            </p>
+            <div className="grid md:grid-cols-3 gap-6 mt-10">
+              <div className="bg-white/20 backdrop-blur-sm rounded-xl p-6">
+                <h3 className="font-semibold text-lg mb-2 text-white">Guided Onboarding</h3>
+                <p className="text-primary-200 text-sm">We walk you through each step of starting your investing journey, from account setup to first deposit.</p>
+              </div>
+              <div className="bg-white/20 backdrop-blur-sm rounded-xl p-6">
+                <h3 className="font-semibold text-lg mb-2 text-white">Simplified Decisions</h3>
+                <p className="text-primary-200 text-sm">Clear, tailored advice replaces the confusion of endless articles and generic financial tips.</p>
+              </div>
+              <div className="bg-white/20 backdrop-blur-sm rounded-xl p-6">
+                <h3 className="font-semibold text-lg mb-2 text-white">Action-Focused</h3>
+                <p className="text-primary-200 text-sm">You don’t just learn — you take the real steps toward building long-term wealth.</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 bg-white">
+      <section className="py-20 static-background-bottom">
         <div className="max-w-3xl mx-auto text-center px-6">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Ready to start growing your wealth?
@@ -156,11 +159,11 @@ const Home = () => {
           </p>
           <Link
             to="/journey"
-            className="inline-block bg-gradient-to-r from-accent-green-500 to-accent-green-600 hover:from-accent-green-600 hover:to-accent-green-700 text-white text-xl font-bold px-10 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+            className="inline-block bg-linear-to-r from-accent-green-500 to-accent-green-600 hover:from-accent-green-600 hover:to-accent-green-700 
+            text-white text-xl font-bold px-10 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
           >
             Start Your Journey →
           </Link>
-          <p className="text-sm text-gray-500 mt-4">Takes about 10 minutes • No credit card required</p>
         </div>
       </section>
     </div>
@@ -171,12 +174,12 @@ const Home = () => {
 const LoggedInHome = ({ user }) => {
   return (
     <div className="min-h-screen">
-      <section className="bg-gradient-to-r from-accent-purple-600 to-accent-green-600 text-white py-20">
+      <section className="static-background py-20 pb-135">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold mb-4">
-            Welcome Back, {user.email.split('@')[0]}! 👋
+          <h1 className="text-5xl font-bold mb-4 text-primary-100">
+            Welcome Back!
           </h1>
-          <p className="text-xl mb-8 opacity-90">
+          <p className="text-xl mb-8 opacity-90 text-primary-400">
             Continue your journey to financial freedom
           </p>
           <div className="flex gap-4 justify-center">

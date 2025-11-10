@@ -16,13 +16,13 @@ const Login = () => {
   const location = useLocation()
 
   useEffect(() => {
-  const params = new URLSearchParams(location.search);
-  if (params.get('mode') === 'signup') {
-    setIsLogin(false);
-  } else {
-    setIsLogin(true);
-  }
-}, [location.search]);
+    const params = new URLSearchParams(location.search);
+    if (params.get('mode') === 'signup') {
+      setIsLogin(false);
+    } else {
+      setIsLogin(true);
+    }
+  }, [location.search]);
 
   useEffect(() => {
     const handleEmailVerification = async () => {
@@ -75,9 +75,9 @@ const Login = () => {
   }
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen static-background flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full">
-        <div className="bg-white rounded-xl shadow-2xl p-8">
+        <div className="bg-primary-100 rounded-xl shadow-2xl p-8">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900">
               {isLogin ? 'Welcome Back' : 'Create Account'}
@@ -163,17 +163,12 @@ const Login = () => {
                 setError('')
                 setMessage('')
               }}
-              className="text-lime-600 hover:text-lime-700 font-medium"
+              className="text-accent-green-600 hover:text-accent-green-700 font-medium"
             >
               {isLogin ? "Don't have an account? Sign up" : 'Already have an account? Sign in'}
             </button>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-gray-200">
-            <p className="text-sm text-gray-600 text-center">
-              Note: To enable authentication, configure your Supabase project credentials in the environment variables.
-            </p>
-          </div>
         </div>
       </div>
     </div>

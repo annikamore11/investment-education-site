@@ -101,7 +101,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: url("assets/noisy-background.png");
+  background: url("assets/images/noisy-background.png");
   background-size: 200px 200px;
   opacity: 0.25; /* adjust texture intensity */
   mix-blend-mode: overlay;
@@ -112,6 +112,73 @@
   position: relative;
   z-index: 2;
 }
+
+
+
+.money-image-background {
+  position: relative;
+  padding: 6rem 2rem; /* reduce vertical spacing */
+  overflow: hidden;
+  min-height: 48vh; /* shorter height than before */
+  display: flex;
+  align-items: center;
+}
+
+.money-image-background::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -8%; /* push image further right (partially offscreen) */
+  transform: translateY(-50%);
+  width: 110%;         /* control how much horizontal space it takes */
+  height: 110%;       /* slightly taller than container for good coverage */
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("assets/images/money_tree.jpg");
+  background-size: cover;
+  background-position: center right;
+  filter: none;
+  opacity: 1;
+  z-index: 0;
+  border-radius: 12px;
+}
+
+/* content sits above the pseudo image */
+.money-image-background > .content {
+  position: relative;
+  z-index: 2;
+  max-width: 55%; /* gives more horizontal room for text */
+}
+
+.static-background-bottom{
+  position: relative;
+  overflow: hidden;
+}
+
+.static-background-bottom::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:#8a9199;
+  z-index: 0;
+}
+
+.static-background-bottom::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("assets/images/noisy-background.png");
+  background-size: 200px 200px;
+  opacity: 0.25; /* adjust texture intensity */
+  mix-blend-mode: overlay;
+  z-index: 1;
+}
+
+.static-background-bottom > * {
+  position: relative;
+  z-index: 2;
+}
+
 
 
 
@@ -186,7 +253,7 @@
   }
   
   .btn-secondary {
-    padding: 0.5rem 1.5rem;
+    padding: 0.75rem 1.5rem;
     background: linear-gradient(135deg, var(--color-accent-green-500), var(--color-accent-green-600));
     color: white;
     font-family: 'Inter', sans-serif;

@@ -1,9 +1,11 @@
+
+
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 
 // Import all step components
-import Welcome from './steps/Welcome'
+//import Welcome from './steps/Welcome'
 import Budget from './steps/Budget'
 import EmergencyFund from './steps/EmergencyFund'
 import YourSituation from './steps/YourSituation'
@@ -133,34 +135,32 @@ const JourneyFlow = () => {
     }
 
     switch (currentStep) {
-      case 1:
-        return <Welcome {...stepProps} />
-      case 2: 
+      case 1: 
         return <YourSituation {...stepProps} />
-      case 3:
+      case 2:
         return <Budget {...stepProps} /> 
       
-      case 4:
+      case 3:
         return <EmergencyFund {...stepProps} />
       
       // case 5:
       //   return <ChooseProvider {...stepProps} />
-      case 5:
+      case 4:
         return <SetupGuide {...stepProps} />
 
-      case 6:
+      case 5:
         return <Recommendation {...stepProps} />
-      case 7:
+      case 6:
         return <AccountBasics {...stepProps} />
-      case 8:
+      case 7:
         return <ChooseInvestment {...stepProps} />
       
-      case 9:
+      case 8:
         return <Automation {...stepProps} />
-      case 10:
+      case 9:
         return <Celebration {...stepProps} />
       default:
-        return <Welcome {...stepProps} />
+        return <YourSituation {...stepProps} />
     }
   }
 
