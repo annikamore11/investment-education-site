@@ -8,7 +8,7 @@ import { welcomeConfig } from './sections/Welcome'
 import { aboutConfig } from './sections/About'
 // import { budgetIncomeConfig } from './sections/BudgetIncome'
 // import { emergencyFundConfig } from './sections/EmergencyFund'
-// import { retirementConfig } from './sections/Retirement'
+import { retirementConfig } from './sections/Retirement'
 
 const JourneyFlow = () => {
   const { user } = useAuth()
@@ -64,9 +64,10 @@ const JourneyFlow = () => {
   const sectionConfigs = [
     welcomeConfig,
     aboutConfig,
+    retirementConfig,
     // budgetIncomeConfig,
     // emergencyFundConfig,
-    // retirementConfig,
+    
   ]
 
   // Load saved progress if user is logged in
