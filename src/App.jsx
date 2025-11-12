@@ -11,6 +11,7 @@ import InvestmentOptions from './pages/investment_basics/InvestmentOptions'
 import Strategies from './pages/investment_basics/Strategies'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
+import ModeSelection from './pages/Modeselection'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <main className="grow">
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/mode-selection" element={<ModeSelection />} />
               <Route path="/journey" element={<JourneyFlow />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/retirement" element={<Retirement />} />

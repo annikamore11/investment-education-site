@@ -79,49 +79,7 @@ const YourSituation = ({ journeyData, updateJourneyData, nextStep, prevStep }) =
             </div>
           </div>
 
-          {/* Question 2: 401k availability (only if employed by company) */}
-          {/* {localData.employment === 'employed-company' && (
-            <div className="animate-slideUp">
-              <label className="block text-lg font-semibold text-gray-900 mb-4">
-                Does your employer offer a 401(k) plan?
-              </label>
-              <div className="space-y-3">
-                <button
-                  onClick={() => setLocalData({ ...localData, hasEmployer401k: true })}
-                  className={`w-full p-4 rounded-xl border-2 transition-all text-left flex items-center space-x-3 ${
-                    localData.hasEmployer401k === true
-                      ? 'border-accent-purple-500 bg-accent-purple-50 shadow-md'
-                      : 'border-gray-200 hover:border-accent-purple-300 hover:bg-gray-50'
-                  }`}
-                >
-                  <span className="text-2xl">✅</span>
-                  <span className="font-semibold text-gray-900">Yes, they do</span>
-                  {localData.hasEmployer401k === true && (
-                    <svg className="w-6 h-6 text-accent-purple-600 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                    </svg>
-                  )}
-                </button>
-                <button
-                  onClick={() => setLocalData({ ...localData, hasEmployer401k: false })}
-                  className={`w-full p-4 rounded-xl border-2 transition-all text-left flex items-center space-x-3 ${
-                    localData.hasEmployer401k === false
-                      ? 'border-accent-purple-500 bg-accent-purple-50 shadow-md'
-                      : 'border-gray-200 hover:border-accent-purple-300 hover:bg-gray-50'
-                  }`}
-                >
-                  <span className="text-2xl">❌</span>
-                  <span className="font-semibold text-gray-900">No, or I'm not sure</span>
-                  {localData.hasEmployer401k === false && (
-                    <svg className="w-6 h-6 text-accent-purple-600 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                    </svg>
-                  )}
-                </button>
-              </div>
-            </div>
-          )} */}
-
+          
           {/* Question 3: Age range */}
           <div className={localData.employment ? 'animate-slideUp' : 'opacity-50'}>
             <label className="block text-lg font-semibold text-gray-900 mb-4">

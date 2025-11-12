@@ -107,7 +107,7 @@ const Home = () => {
 
           <div className="text-center animate-slideUp">
             <Link
-              to="/journey"
+              to="/mode-selection"
               className="inline-block bg-linear-to-r from-accent-green-500 to-accent-green-600 hover:from-accent-green-600 hover:to-accent-green-700 text-primary-100 
               font-bold text-xl px-10 py-4 rounded-xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
             >
@@ -158,7 +158,7 @@ const Home = () => {
             Join thousands taking control of their financial future
           </p>
           <Link
-            to="/journey"
+            to="/mode-selection"
             className="inline-block bg-linear-to-r from-accent-green-500 to-accent-green-600 hover:from-accent-green-600 hover:to-accent-green-700 
             text-white text-xl font-bold px-10 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
           >

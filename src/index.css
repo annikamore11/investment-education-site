@@ -80,6 +80,10 @@
   overflow: hidden;
 }
 
+.fadeInCard {
+  animation: fadeInCard 0.4s ease-out forwards;
+}
+
 .static-background::before {
   content: "";
   position: absolute;
@@ -176,6 +180,17 @@
     transform: scale(1.05);
   }
 }
+@keyframes fadeInCards {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 
 
@@ -210,17 +225,35 @@
 }
 
 @layer components {
-  .btn-primary {
-    padding: 0.75rem 1.5rem;
-    background-color: var(--color-primary-900);
-    color: white;
-    border-radius: 9999px;
+  .btn-journey-back {
+    padding: 0.7rem 1.5rem;
+    background: transparent;
+    color: var(--color-accent-green-600);
+    border: 1px solid var(--color-accent-green-600);
+    border-radius: 8px;
     font-family: 'Inter', sans-serif;
-    transition: background-color 200ms;
+    font-weight: bold;
+    transition: all 200ms ease;
   }
   
-  .btn-primary:hover {
-    background-color: var(--color-primary-800);
+  .btn-journey-back:hover {
+    background-color: var(--color-accent-green-100);
+    border: 1px solid var(--color-accent-green-700);
+  }
+
+  .btn-journey-next {
+    padding: 0.7rem 1.5rem;
+    background: transparent;
+    background: linear-gradient(135deg, var(--color-accent-green-500), var(--color-accent-green-600));
+    color: white;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    transition: all 200ms ease;
+  }
+  
+  .btn-journey-next:hover {
+    background: linear-gradient(135deg, var(--color-accent-green-600), var(--color-accent-green-700));
   }
   
   .btn-secondary {
@@ -235,7 +268,7 @@
 
   .btn-secondary:hover {
     background: linear-gradient(135deg, var(--color-accent-green-600), var(--color-accent-green-700));
-    transform: translateY(-2px);
+    transform: scale(1.025);
     box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
   }
   
@@ -253,7 +286,7 @@
   .btn-border:hover {
     color: var(--color-accent-green-700);
     border: 1px solid var(--color-accent-green-700);
-    transform: translateY(-1px);
+    transform: scale(1.025);
   }
   .card {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
