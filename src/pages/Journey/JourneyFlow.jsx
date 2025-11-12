@@ -100,7 +100,13 @@ const JourneyFlow = () => {
 
   // Update journey data (single field)
   const updateJourneyData = (key, value) => {
-    setJourneyData(prev => ({ ...prev, [key]: value }))
+    setJourneyData(prev => {
+    const newData = { ...prev, [key]: value }
+    
+    // Force recalculation of steps after state updates
+    // This ensures dynamic steps are recalculated immediately
+    return newData
+  })
   }
 
   // Update multiple fields at once
@@ -147,12 +153,23 @@ const JourneyFlow = () => {
     }, 50)
   }
 
-  // Navigate to next step
-  const nextStep = () => {
+  const nextStep = (pendingUpdates = {}) => {
+    // Merge pending updates with current data for step calculation
+    const dataWithUpdates = { ...journeyData, ...pendingUpdates }
+    
     const section = getCurrentSection()
-    const steps = getCurrentSteps()
+    
+    // Calculate steps using updated data
+    const steps = typeof section.getSteps === 'function'
+      ? section.getSteps(dataWithUpdates)
+      : section.steps || []
     
     if (!section || steps.length === 0) return
+
+    // Apply pending updates to actual state
+    if (Object.keys(pendingUpdates).length > 0) {
+      setJourneyData(prev => ({ ...prev, ...pendingUpdates }))
+    }
 
     // Check if we're at the last step of the current section
     if (currentStepInSection < steps.length - 1) {
@@ -163,7 +180,7 @@ const JourneyFlow = () => {
       
       // Run section's onComplete hook if it exists
       if (section.onComplete) {
-        section.onComplete(journeyData, updateJourneyData, updateMultipleFields)
+        section.onComplete(dataWithUpdates, updateJourneyData, updateMultipleFields)
       }
       
       // Mark section as complete
@@ -177,13 +194,12 @@ const JourneyFlow = () => {
         setCurrentStepInSection(0)
       } else {
         // Journey complete!
-        updateJourneyData('completed', true)
+        setJourneyData(prev => ({ ...prev, completed: true }))
       }
     }
     
     scrollToTop()
   }
-
   // Navigate to previous step
   const prevStep = () => {
     const steps = getCurrentSteps()
@@ -306,15 +322,22 @@ const JourneyFlow = () => {
     const progress = (currentStep / totalSteps) * 100
 
     return (
-      <div className="w-full bg-gray-800 rounded-full h-2.5 mb-2">
-        <div
-          className="bg-accent-green-600 h-2.5 rounded-full transition-all duration-300"
-          style={{ width: `${progress}%` }}
-        />
-        <div className="text-sm text-primary-100 mt-1 text-right">
-          Step {currentStep} of {totalSteps}
+      <div className="w-full mb-6">
+        {/* Progress bar container */}
+        <div className="w-full bg-gray-800 rounded-full h-2.5 overflow-hidden">
+          <div
+            className="bg-accent-green-600 h-2.5 rounded-full transition-all duration-300"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+
+        {/* Labels */}
+        <div className="flex justify-between items-center mt-2 text-sm text-primary-100">
+          <span className="font-medium">Section Progress</span>
+          <span>Step {currentStep} of {totalSteps}</span>
         </div>
       </div>
+
     )
   }
 
@@ -326,13 +349,13 @@ const JourneyFlow = () => {
       {/* Main Container */}
       <div className="min-h-screen relative" style={{ zIndex: 1 }}>
         {/* Top border line */}
-        <div className="border-b border-primary-400 fixed top-16 left-0 right-0 z-50"></div>
+        <div className="border-b border-primary-400 fixed top-18 left-0 right-0 z-50"></div>
         
         {/* Hamburger Menu Button - Only visible when sidebar is closed */}
         {!isSidebarOpen && (
           <button
             onClick={() => setIsSidebarOpen(true)}
-            className="fixed top-20 left-4 z-50 bg-zinc-950 shadow-lg rounded-lg p-3 hover:bg-gray-700 transition-all"
+            className="fixed top-18 left-4 z-50 bg-zinc-950 shadow-lg rounded-lg p-3 hover:bg-gray-700 transition-all"
             aria-label="Open navigation"
           >
             <Menu className="w-6 h-6 text-primary-100" />
@@ -391,6 +414,7 @@ const JourneyFlow = () => {
                   </button>
                 )
               })}
+              
             </nav>
 
             
@@ -398,6 +422,7 @@ const JourneyFlow = () => {
 
           {/* Main Content */}
           <div className={`transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-0'}`}>
+            
             {/* Scrollable container with fixed height */}
             <div 
               ref={mainContentRef}
@@ -426,6 +451,7 @@ const JourneyFlow = () => {
           </div>
         </div>
 
+
         {/* Save indicator for logged in users */}
         {user && (
           <div className="fixed bottom-4 right-4 bg-zinc-950 shadow-lg rounded-full px-4 py-2 text-sm text-primary-100 flex items-center space-x-2 z-50">
@@ -436,6 +462,7 @@ const JourneyFlow = () => {
           </div>
         )}
       </div>
+      {/* <div className="w-full border-t border-primary-9ß00 mt-2"></div> */}
     </>
   )
 }

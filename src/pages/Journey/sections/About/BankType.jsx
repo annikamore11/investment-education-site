@@ -7,7 +7,6 @@ const BankType = ({ journeyData, updateJourneyData, nextStep, prevStep }) => {
   const handleNext = () => {
     updateJourneyData('bankType', bankType)
     
-    updateJourneyData('recommendedAccount', recommendation)
     nextStep()
   }
 
@@ -60,8 +59,8 @@ const bankOptions = [
 
       <div className="bg-primary-100 rounded-2xl shadow-xl p-8 md:p-12">
         {/* Info Box */}
-        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6">
-          <p className="text-sm text-blue-900">
+        <div className="bg-purple-100 border border-purple-300 rounded-xl p-4 mb-6">
+          <p className="text-sm text-purple-900">
             <strong>Why this matters:</strong> Different bank types have different verification processes when connecting to investment accounts. This helps us set expectations.
           </p>
         </div>
@@ -76,12 +75,12 @@ const bankOptions = [
                 onClick={() => setBankType(option.value)}
                 className={`w-full p-5 rounded-xl border-2 transition-all text-left ${
                   bankType === option.value
-                    ? 'border-accent-purple-500 bg-accent-purple-50 shadow-md'
-                    : 'border-gray-300 hover:border-accent-purple-300 hover:bg-gray-50'
+                    ? 'border-accent-green-600 bg-accent-green-50 shadow-sm'
+                    : 'border-accent-green-600 hover:border-accent-gray-400 hover:bg-gray-100 bg-white'
                 }`}
               >
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 hidden md:block">
                     <Icon className="w-6 h-6 text-gray-600" />
                   </div>
                   <div className="flex-1">
@@ -90,7 +89,7 @@ const bankOptions = [
                     <div className="text-xs text-gray-500 italic">{option.note}</div>
                   </div>
                   {bankType === option.value && (
-                    <svg className="w-6 h-6 text-accent-purple-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-6 h-6 text-accent-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                     </svg>
                   )}
@@ -101,7 +100,7 @@ const bankOptions = [
         </div>
 
         {/* Helpful note based on selection */}
-        {bankType === 'regional' && (
+        {(bankType === 'regional' || bankType === 'online' || bankType === 'business') && (
           <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-6">
             <p className="text-sm text-yellow-900">
               <strong>Good to know:</strong> Small, online, or business accounts may require manual verification, which can result in verification delays. Don't worry - we'll guide you through it!

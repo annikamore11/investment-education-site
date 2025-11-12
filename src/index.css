@@ -229,7 +229,7 @@
     padding: 0.7rem 1.5rem;
     background: transparent;
     color: var(--color-accent-green-600);
-    border: 1px solid var(--color-accent-green-600);
+    border: 2px solid var(--color-accent-green-600);
     border-radius: 8px;
     font-family: 'Inter', sans-serif;
     font-weight: bold;
@@ -238,7 +238,7 @@
   
   .btn-journey-back:hover {
     background-color: var(--color-accent-green-100);
-    border: 1px solid var(--color-accent-green-700);
+    border: 2px solid var(--color-accent-green-700);
   }
 
   .btn-journey-next {

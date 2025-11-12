@@ -26,8 +26,8 @@ const Welcome = ({ nextStep }) => {
           
           <div className="space-y-5">
             <div className="flex items-start space-x-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                <User className="w-6 h-6 text-blue-600" />
+              <div className="flex-shrink-0 w-12 h-12 bg-primary-300 rounded-lg flex items-center justify-center">
+                <User className="w-6 h-6 text-accent-green-600" />
               </div>
               <div>
                 <h3 className="font-semibold text-gray-900 text-base mb-1">Personalized to You</h3>
@@ -38,8 +38,8 @@ const Welcome = ({ nextStep }) => {
             </div>
 
             <div className="flex items-start space-x-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <Shield className="w-6 h-6 text-green-600" />
+              <div className="flex-shrink-0 w-12 h-12 bg-primary-300 rounded-lg flex items-center justify-center">
+                <Shield className="w-6 h-6 text-accent-green-600" />
               </div>
               <div>
                 <h3 className="font-semibold text-gray-900 text-base mb-1">Safety First</h3>
@@ -50,8 +50,8 @@ const Welcome = ({ nextStep }) => {
             </div>
 
             <div className="flex items-start space-x-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <Split className="w-6 h-6 text-green-600" />
+              <div className="flex-shrink-0 w-12 h-12 bg-primary-300 rounded-lg flex items-center justify-center">
+                <Split className="w-6 h-6 text-accent-green-600" />
               </div>
               <div>
                 <h3 className="font-semibold text-gray-900 text-base mb-1">Smart Strategy</h3>
@@ -62,8 +62,8 @@ const Welcome = ({ nextStep }) => {
             </div>
 
             <div className="flex items-start space-x-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                <NotebookPen className="w-6 h-6 text-orange-600" />
+              <div className="flex-shrink-0 w-12 h-12 bg-primary-300 rounded-lg flex items-center justify-center">
+                <NotebookPen className="w-6 h-6 text-accent-green-600" />
               </div>
               <div>
                 <h3 className="font-semibold text-gray-900 text-base mb-1">Complete Guidance</h3>
@@ -82,28 +82,28 @@ const Welcome = ({ nextStep }) => {
           </h2>
           
           <div className="space-y-3">
-            <div className="flex items-center space-x-3 bg-accent-green-100 rounded-lg p-3.5 hover:bg-accent-green-100 transition-colors">
+            <div className="flex items-center space-x-3 bg-white rounded-lg p-3.5 hover:bg-accent-green-200 transition-colors">
               <div className="w-8 h-8 bg-accent-green-600 rounded-full flex items-center justify-center flex-shrink-0">
                 <span className="text-white text-sm font-bold">3</span>
               </div>
               <span className="text-gray-700 text-sm font-medium">Plan emergency fund</span>
             </div>
             
-            <div className="flex items-center space-x-3 bg-accent-green-100 rounded-lg p-3.5 hover:bg-accent-green-100 transition-colors">
+            <div className="flex items-center space-x-3 bg-white rounded-lg p-3.5 hover:bg-accent-green-200 transition-colors">
               <div className="w-8 h-8 bg-accent-green-600 rounded-full flex items-center justify-center flex-shrink-0">
                 <span className="text-white text-sm font-bold">4</span>
               </div>
               <span className="text-gray-700 text-sm font-medium">Choose retirement account</span>
             </div>
 
-            <div className="flex items-center space-x-3 bg-accent-green-100 rounded-lg p-3.5 hover:bg-accent-green-100 transition-colors">
+            <div className="flex items-center space-x-3 bg-white rounded-lg p-3.5 hover:bg-accent-green-200 transition-colors">
               <div className="w-8 h-8 bg-accent-green-600 rounded-full flex items-center justify-center flex-shrink-0">
                 <span className="text-white text-sm font-bold">5</span>
               </div>
               <span className="text-gray-700 text-sm font-medium">Select investments</span>
             </div>
 
-            <div className="flex items-center space-x-3 bg-accent-green-100 rounded-lg p-3.5 hover:bg-accent-green-100 transition-colors">
+            <div className="flex items-center space-x-3 bg-white rounded-lg p-3.5 hover:bg-accent-green-200 transition-colors">
               <div className="w-8 h-8 bg-accent-green-600 rounded-full flex items-center justify-center flex-shrink-0">
                 <span className="text-white text-sm font-bold">6</span>
               </div>

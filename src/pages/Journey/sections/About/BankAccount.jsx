@@ -3,10 +3,10 @@ import { Landmark, AlertCircle, Check } from 'lucide-react'
 
 const BankAccount = ({ journeyData, updateJourneyData, nextStep, prevStep }) => {
   const [hasBankAccount, setHasBankAccount] = useState(journeyData.hasBankAccount ?? null)
+  
 
   const handleNext = () => {
-    updateJourneyData('hasBankAccount', hasBankAccount)
-    nextStep()
+    nextStep({ hasBankAccount })
   }
 
   const bankAccountOptions = [
@@ -47,10 +47,10 @@ const BankAccount = ({ journeyData, updateJourneyData, nextStep, prevStep }) => 
             <button
               key={option.value.toString()}
               onClick={() => setHasBankAccount(option.value)}
-              className={`flex items-center justify-between px-5 py-4 rounded-xl border transition-all duration-200 text-left
+              className={`flex items-center justify-between px-5 py-4 rounded-xl border-2 transition-all duration-200 text-left
                 ${hasBankAccount === option.value
-                  ? 'border-accent-green-500 bg-accent-green-50 shadow-sm'
-                  : 'border-gray-400 hover:border-accent-green-300 hover:bg-gray-50'
+                  ? 'border-accent-green-600 bg-accent-green-50 shadow-sm'
+                  : 'border-accent-green-600 hover:border-accent-gray-400 hover:bg-gray-100 bg-white'
                 }`}
             >
               <span className="font-medium text-gray-800">{option.label}</span>

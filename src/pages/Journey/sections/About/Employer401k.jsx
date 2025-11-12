@@ -27,11 +27,11 @@ const Employer401k = ({ journeyData, updateJourneyData, nextStep, prevStep }) =>
         
         
         <h1 className="text-3xl md:text-4xl font-bold text-primary-100 mb-3">
-          Employer Benefits
+          Employer 401(k) or 401(b)
         </h1>
         
         <p className="text-lg text-primary-200 max-w-4xl mx-auto">
-          Does your employer offer a 401(k) retirement plan?
+          Does your employer offer a 401(k) or 401(b) retirement plan?
         </p>
       </div>
 
@@ -49,10 +49,10 @@ const Employer401k = ({ journeyData, updateJourneyData, nextStep, prevStep }) =>
           <button
             key={option.value}
             onClick={() => setHas401k(option.value)}
-            className={`flex items-center justify-between px-5 py-4 rounded-xl border transition-all duration-200 text-left
+            className={`flex items-center justify-between px-5 py-4 rounded-xl border-2 transition-all duration-200 text-left
               ${has401k === option.value
                 ? 'border-accent-green-600 bg-accent-green-50 shadow-sm'
-                : 'border-accent-green-600 hover:border-accent-gray-400 hover:bg-gray-50'
+                : 'border-accent-green-600 hover:border-accent-gray-400 hover:bg-gray-100 bg-white'
               }`}
           >
           

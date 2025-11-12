@@ -39,10 +39,10 @@ const EmploymentStatus = ({ journeyData, updateJourneyData, nextStep, prevStep }
             <button
               key={option.value}
               onClick={() => setEmployment(option.value)}
-              className={`flex items-center justify-between px-5 py-4 rounded-xl border transition-all duration-200 text-left
+              className={`flex items-center justify-between px-5 py-4 rounded-xl border-2 transition-all duration-200 text-left
                 ${employment === option.value
                   ? 'border-accent-green-600 bg-accent-green-50 shadow-sm'
-                  : 'border-accent-green-600 hover:border-accent-gray-400 hover:bg-gray-50'
+                  : 'border-accent-green-600 hover:border-accent-gray-400 hover:bg-gray-100 bg-white'
                 }`}
             >
               <span className="font-medium text-gray-800">{option.label}</span>
