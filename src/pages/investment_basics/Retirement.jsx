@@ -1,11 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import JourneyProgress from '../../components/JourneyProgress'
 
 const Retirement = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-      <JourneyProgress />
       
       <div className="py-12 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-xl shadow-lg p-8 md:p-12">
