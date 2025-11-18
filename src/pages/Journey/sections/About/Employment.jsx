@@ -6,7 +6,11 @@ const EmploymentStatus = ({ journeyData, updateJourneyData, nextStep, prevStep }
 
   const handleNext = () => {
     updateJourneyData('employment', employment)
-    nextStep()
+    
+    // Small delay to let state update
+    setTimeout(() => {
+      nextStep()
+    }, 50)
   }
 
   const employmentOptions = [
@@ -14,7 +18,6 @@ const EmploymentStatus = ({ journeyData, updateJourneyData, nextStep, prevStep }
     { value: 'self-employed', label: 'Self-employed / Freelance' },
     { value: 'student', label: 'Student' },
     { value: 'unemployed', label: 'Not currently working' },
-    { value: 'other', label: 'Other' },
   ]
 
   return (
@@ -42,7 +45,7 @@ const EmploymentStatus = ({ journeyData, updateJourneyData, nextStep, prevStep }
               className={`flex items-center justify-between px-5 py-4 rounded-xl border-2 transition-all duration-200 text-left
                 ${employment === option.value
                   ? 'border-accent-green-600 bg-accent-green-50 shadow-sm'
-                  : 'border-accent-green-600 hover:border-accent-gray-400 hover:bg-gray-100 bg-white'
+                  : 'border-primary-400 hover:border-primary-600 hover:bg-gray-100 bg-primary-50'
                 }`}
             >
               <span className="font-medium text-gray-800">{option.label}</span>

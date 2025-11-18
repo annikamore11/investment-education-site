@@ -9,7 +9,7 @@ const Employer401kFollowup = ({ journeyData, updateJourneyData, nextStep, prevSt
     if (has401k) {
       updateJourneyData('hasEmployerMatch', hasMatch)
     }
-    nextStep()
+    nextStep({ has401k })
   }
 
   return (

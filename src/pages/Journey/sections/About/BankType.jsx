@@ -7,7 +7,9 @@ const BankType = ({ journeyData, updateJourneyData, nextStep, prevStep }) => {
   const handleNext = () => {
     updateJourneyData('bankType', bankType)
     
-    nextStep()
+    setTimeout(() => {
+      nextStep()
+    }, 50)
   }
 
 const bankOptions = [
@@ -76,7 +78,7 @@ const bankOptions = [
                 className={`w-full p-5 rounded-xl border-2 transition-all text-left ${
                   bankType === option.value
                     ? 'border-accent-green-600 bg-accent-green-50 shadow-sm'
-                    : 'border-accent-green-600 hover:border-accent-gray-400 hover:bg-gray-100 bg-white'
+                    : 'border-primary-400 hover:border-primary-600 hover:bg-gray-100 bg-primary-50'
                 }`}
               >
                 <div className="flex items-start space-x-4">

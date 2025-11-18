@@ -29,7 +29,7 @@ const Home = () => {
     return () => clearTimeout(timer)
   }, [location.key])  // ← Triggers on navigation
 
-  // 🌱 Sequentially reveal steps
+  // Sequentially reveal steps
   useEffect(() => {
     setCurrentStep(0)
     const timers = steps.map((_, i) =>

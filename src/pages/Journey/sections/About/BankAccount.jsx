@@ -6,7 +6,11 @@ const BankAccount = ({ journeyData, updateJourneyData, nextStep, prevStep }) => 
   
 
   const handleNext = () => {
-    nextStep({ hasBankAccount })
+    updateJourneyData('hasBankAccount', hasBankAccount)
+
+    setTimeout(() => {
+      nextStep()
+    }, 50)
   }
 
   const bankAccountOptions = [

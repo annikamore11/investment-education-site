@@ -6,7 +6,9 @@ const Employer401k = ({ journeyData, updateJourneyData, nextStep, prevStep }) =>
 
   const handleNext = () => {
     updateJourneyData('hasEmployer401k', has401k)
-    nextStep()
+    setTimeout(() => {
+      nextStep()
+    }, 50)
   }
 
   const options401k = [
@@ -27,11 +29,11 @@ const Employer401k = ({ journeyData, updateJourneyData, nextStep, prevStep }) =>
         
         
         <h1 className="text-3xl md:text-4xl font-bold text-primary-100 mb-3">
-          Employer 401(k) or 401(b)
+          Employer 401(k) or 403(b)
         </h1>
         
         <p className="text-lg text-primary-200 max-w-4xl mx-auto">
-          Does your employer offer a 401(k) or 401(b) retirement plan?
+          Does your employer offer a 401(k) or 403(b) retirement plan?
         </p>
       </div>
 
@@ -39,7 +41,7 @@ const Employer401k = ({ journeyData, updateJourneyData, nextStep, prevStep }) =>
         {/* Info Box */}
         <div className="bg-purple-100 border border-purple-300 rounded-xl p-4 mb-6">
           <p className="text-sm text-purple-900">
-            <strong>Why this matters:</strong> If your employer offers a 401(k), especially with matching contributions, it's often the best place to start investing.
+            <strong>Why this matters:</strong> If your employer offers a 401(k) or 403(b), especially with matching contributions, it's often the best place to start investing.
           </p>
         </div>
 
@@ -52,7 +54,7 @@ const Employer401k = ({ journeyData, updateJourneyData, nextStep, prevStep }) =>
             className={`flex items-center justify-between px-5 py-4 rounded-xl border-2 transition-all duration-200 text-left
               ${has401k === option.value
                 ? 'border-accent-green-600 bg-accent-green-50 shadow-sm'
-                : 'border-accent-green-600 hover:border-accent-gray-400 hover:bg-gray-100 bg-white'
+                : 'border-primary-400 hover:border-primary-600 hover:bg-gray-100 bg-primary-50'
               }`}
           >
           

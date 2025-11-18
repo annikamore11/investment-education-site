@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { supabase } from '../utils/supabase'
+import { saveJourneyToDatabase } from '../utils/journeyStorage'
 
 const AuthContext = createContext({})
 
@@ -36,6 +37,29 @@ export const AuthProvider = ({ children }) => {
       email,
       password,
     })
+    
+    // If successful signup, migrate guest data immediately
+    if (data?.user) {
+      const guestData = localStorage.getItem('journey_guest')
+      if (guestData) {
+        try {
+          const parsed = JSON.parse(guestData)
+          // Save guest progress to their new account
+          await saveJourneyToDatabase(
+            data.user.id,
+            parsed.data,
+            parsed.section || 'welcome',
+            parsed.stepInSection || 0
+          )
+          // Remove guest data after migration
+          localStorage.removeItem('journey_guest')
+          console.log('Guest data migrated to new user account!')
+        } catch (err) {
+          console.error('Error migrating guest data on signup:', err)
+        }
+      }
+    }
+    
     return { data, error }
   }
 
@@ -44,6 +68,29 @@ export const AuthProvider = ({ children }) => {
       email,
       password,
     })
+    
+    // If successful login, check for guest data to migrate
+    if (data?.user) {
+      const guestData = localStorage.getItem('journey_guest')
+      if (guestData) {
+        try {
+          const parsed = JSON.parse(guestData)
+          // Save guest progress to their account
+          await saveJourneyToDatabase(
+            data.user.id,
+            parsed.data,
+            parsed.section || 'welcome',
+            parsed.stepInSection || 0
+          )
+          // Remove guest data after migration
+          localStorage.removeItem('journey_guest')
+          console.log('Guest data migrated on login!')
+        } catch (err) {
+          console.error('Error migrating guest data:', err)
+        }
+      }
+    }
+    
     return { data, error }
   }
 
