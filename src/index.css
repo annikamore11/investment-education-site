@@ -227,7 +227,7 @@
 @layer components {
   .btn-journey-back {
     padding: 0.7rem 1.5rem;
-    background: transparent;
+    background: var(--color-primary-50);
     color: var(--color-accent-green-600);
     border: 2px solid var(--color-accent-green-600);
     border-radius: 8px;
@@ -237,7 +237,7 @@
   }
   
   .btn-journey-back:hover {
-    background-color: var(--color-accent-green-100);
+    background-color: var(--color-gray-100);
     border: 2px solid var(--color-accent-green-700);
   }
 

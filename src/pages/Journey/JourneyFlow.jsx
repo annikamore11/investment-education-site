@@ -8,6 +8,7 @@ import { saveJourneyToDatabase, loadJourneyFromDatabase, deleteJourneyFromDataba
 import { welcomeConfig } from './sections/Welcome'
 import { aboutConfig } from './sections/About'
 import { budgetConfig } from './sections/BudgetIncome'
+import { emergencyFundConfig } from './sections/EmergencyFund'
 import { retirementConfig } from './sections/Retirement'
 
 const JourneyFlow = () => {
@@ -36,13 +37,20 @@ const JourneyFlow = () => {
     utilities: '',
     other: '',
     monthlyIncome: '',
+    estimatedTaxPercentage: '',
     payFrequency: '',
+
+    // Emergency Fund Data
+    hasEmergencyFund: null,
+    emergencyFundGoal: '',
+    emergencyFundAccountType: '',
     
     // Section completion
     sectionCompletion: {
       welcome: false,
       aboutYou: false,
       budget: false,
+      emergencyFund: false,
     }
   })
 
@@ -54,6 +62,7 @@ const JourneyFlow = () => {
     welcomeConfig,
     aboutConfig,
     budgetConfig,
+    emergencyFundConfig,
     retirementConfig
   ]
 
