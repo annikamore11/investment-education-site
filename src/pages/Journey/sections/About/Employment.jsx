@@ -6,6 +6,14 @@ const EmploymentStatus = ({ journeyData, updateJourneyData, nextStep, prevStep }
 
   const handleNext = () => {
     updateJourneyData('employment', employment)
+
+    // Only update for employed people
+    if (['self-employed', 'student', 'unemployed'].includes(employment)) {
+      updateJourneyData('hasEmployer401k', false)
+    }
+    
+    
+  
     
     // Small delay to let state update
     setTimeout(() => {
