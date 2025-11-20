@@ -17,7 +17,7 @@ const ModeSelection = () => {
   }
 
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative static-background">
       {/* Background */}
       <div className="fixed inset-0 overflow-hidden static-background"></div>
 

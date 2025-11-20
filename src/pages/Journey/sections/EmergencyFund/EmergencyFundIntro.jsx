@@ -1,5 +1,7 @@
 import React from 'react'
 import { Shield, TrendingUp, AlertTriangle } from 'lucide-react'
+import CompoundInterestChart from '../../../../components/charts/CompoundInterestChart'
+
 
 const EmergencyFundIntro = ({ journeyData, nextStep, prevStep }) => {
   return (
@@ -20,38 +22,41 @@ const EmergencyFundIntro = ({ journeyData, nextStep, prevStep }) => {
           </p>
         </div>
         {/* Why Emergency Fund */}
-        <div className="mb-8">
-          <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
-            <AlertTriangle className="w-6 h-6 text-gray-600 mr-2" />
-            Life Happens
-          </h3>
-          <div className="space-y-2 text-gray-700 mb-4">
-            <p>• Car breaks down: $2,000 in repairs</p>
-            <p>• Lose your job: 3 months to find a new one</p>
-            <p>• Medical emergency: $5,000 deductible</p>
-            <p>• Need to move: First/last month rent + deposit</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+          <div>
+            <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+              <AlertTriangle className="w-6 h-6 text-gray-600 mr-2" />
+              Life Happens
+            </h3>
+            <div className="space-y-2 text-gray-700 mb-4 text-left">
+              <p>• Car breaks down: $2,000 in repairs</p>
+              <p>• Lose your job: 3 months to find a new one</p>
+              <p>• Medical emergency: $5,000 deductible</p>
+              <p>• Need to move: First/last month rent + deposit</p>
+            </div>
+            <p className="text-gray-800 font-semibold">
+              Without savings, you'll rack up credit card debt or worse.
+            </p>
           </div>
-          <p className="text-gray-800 font-semibold">
-            Without savings, you'll rack up credit card debt or worse.
-          </p>
-        </div>
+        
 
         {/* What is Emergency Fund */}
-        <div className="mb-8">
-          <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
-            <Shield className="w-6 h-6 text-gray-600 mr-2" />
-            What Is an Emergency Fund?
-          </h3>
-          <p className="text-gray-700 mb-4">
-            3-6 months of expenses sitting in a safe, accessible account that earns interest.
-          </p>
-          <div className="bg-gray-50 border border-gray-300 rounded-lg p-4">
-            <p className="font-semibold text-gray-900 mb-2">The Rules:</p>
-            <div className="space-y-1 text-sm text-gray-700">
-              <p>✓ Keep separate from spending money</p>
-              <p>✓ Easy to access in true emergencies</p>
-              <p>✓ Earns interest while it sits there</p>
-              <p>✓ NOT for vacations or shopping</p>
+          <div>
+            <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+              <Shield className="w-6 h-6 text-gray-600 mr-2" />
+              What Is an Emergency Fund?
+            </h3>
+            <p className="text-gray-700 mb-4">
+              3-6 months of expenses sitting in a safe, accessible account that earns interest.
+            </p>
+            <div className="bg-gray-50 border border-gray-400 rounded-lg p-4">
+              <p className="font-semibold text-gray-900 mb-2">The Rules:</p>
+              <div className="space-y-1 text-sm text-gray-700">
+                <p>✓ Keep separate from spending money</p>
+                <p>✓ Easy to access in true emergencies</p>
+                <p>✓ Earns interest while it sits there</p>
+                <p>✓ NOT for vacations or shopping</p>
+              </div>
             </div>
           </div>
         </div>
@@ -64,7 +69,7 @@ const EmergencyFundIntro = ({ journeyData, nextStep, prevStep }) => {
           </h3>
           
           <div className="grid md:grid-cols-2 gap-4 mb-4">
-            <div className="bg-gray-100 border border-gray-300 rounded-lg p-4">
+            <div className="bg-primary-50 border border-gray-400 rounded-lg p-4">
               <p className="font-bold text-gray-900 mb-2">Regular Bank Checkings/Savings Account</p>
               <p className="text-sm text-gray-700 mb-2">Interest: <strong>Typically 0% - %1</strong></p>
               <p className="text-sm text-gray-600">
@@ -72,7 +77,7 @@ const EmergencyFundIntro = ({ journeyData, nextStep, prevStep }) => {
               </p>
             </div>
             
-            <div className="bg-green-50 border border-green-300 rounded-lg p-4">
+            <div className="bg-green-50 border border-gray-400 rounded-lg p-4">
               <p className="font-bold text-gray-900 mb-2">Money Market Fund (SPAXX)</p>
               <p className="text-sm text-gray-700 mb-2">Interest: <strong>~ 3.5% - 5%</strong></p>
               <p className="text-sm text-gray-600">
@@ -81,18 +86,7 @@ const EmergencyFundIntro = ({ journeyData, nextStep, prevStep }) => {
             </div>
           </div>
 
-          <div className="bg-gray-50 border border-gray-300 rounded-lg p-4">
-            <p className="font-semibold text-gray-900 mb-2">The Difference Over 5 Years:</p>
-            <p className="text-sm text-gray-700">
-              $10,000 in bank → <strong>$10,000</strong>
-            </p>
-            <p className="text-sm text-gray-700">
-              $10,000 in SPAXX → <strong className="text-green-700">$12,762</strong>
-            </p>
-            <p className="text-sm text-gray-600 mt-2">
-              That's $2,762 in free money.
-            </p>
-          </div>
+          <CompoundInterestChart principal={10000} rate={0.05} years={5} />
         </div>
 
         {/* Navigation */}

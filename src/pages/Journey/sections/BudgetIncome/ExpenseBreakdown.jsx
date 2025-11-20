@@ -3,12 +3,12 @@ import { House, Car, Utensils, ShieldPlus, Receipt, Film } from 'lucide-react'
 
 const ExpenseBreakdown = ({ journeyData, updateJourneyData, nextStep, prevStep }) => {
   const [expenses, setExpenses] = useState({
-    rent: journeyData.rent || '',
-    carPayment: journeyData.carPayment || '',
-    food: journeyData.food || '',
-    insurance: journeyData.insurance || '',
-    utilities: journeyData.utilities || '',
-    other: journeyData.other || '',
+    housing: journeyData.expenseBreakdown?.housing || '',
+    transportation: journeyData.expenseBreakdown?.transportation || '',
+    food: journeyData.expenseBreakdown?.food || '',
+    insurance: journeyData.expenseBreakdown?.insurance || '',
+    utilities: journeyData.expenseBreakdown?.utilities || '',
+    other: journeyData.expenseBreakdown?.other || '',
   })
 
   const total = Object.values(expenses).reduce((sum, val) => sum + (parseFloat(val) || 0), 0)
@@ -19,10 +19,16 @@ const ExpenseBreakdown = ({ journeyData, updateJourneyData, nextStep, prevStep }
   }
 
   const handleNext = () => {
-    // Save individual expenses
+    const breakdownData = {}
     Object.keys(expenses).forEach(key => {
-      updateJourneyData(key, expenses[key])
+      const value = parseFloat(expenses[key]) || 0
+      if (value > 0) {
+        breakdownData[key] = value
+      }
     })
+    
+    // Save the breakdown object
+    updateJourneyData('expenseBreakdown', breakdownData)
     
     // Update the total monthly expenses
     updateJourneyData('monthlyExpenses', total)
@@ -197,7 +203,7 @@ const ExpenseBreakdown = ({ journeyData, updateJourneyData, nextStep, prevStep }
 
         {/* Total */}
         {total > 0 && (
-          <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-xl p-6 mb-6 border-2 border-green-300">
+          <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-xl p-6 mb-6 border-2 border-green-600">
             <div className="text-center">
               <p className="text-gray-700 mb-2">Your Estimated Monthly Total</p>
               <p className="text-4xl font-bold text-green-700">

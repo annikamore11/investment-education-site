@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { TrendingUp, DollarSign, TriangleAlert, Info } from 'lucide-react'
 
 const Income = ({ journeyData, updateJourneyData, nextStep, prevStep }) => {
-  const [income, setIncome] = useState(journeyData.monthlyIncome || 3000)
+  const [income, setIncome] = useState(journeyData.monthlyIncome || 0)
   const [customIncome, setCustomIncome] = useState('')
   const [taxPercentage, setTaxPercentage] = useState(journeyData.estimatedTaxPercentage || 25)
   const [taxDollarAmount, setTaxDollarAmount] = useState('') // Add this new state
@@ -15,6 +15,7 @@ const Income = ({ journeyData, updateJourneyData, nextStep, prevStep }) => {
     
     if (isSelfEmployed) {
       updateJourneyData('estimatedTaxPercentage', taxPercentage)
+      updateJourneyData('estimatedTaxDollarAmount', taxDollarAmount)
     }
     
     setTimeout(() => {

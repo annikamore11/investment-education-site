@@ -77,6 +77,10 @@
 }
 
 .static-background {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   overflow: hidden;
 }
 
@@ -87,6 +91,9 @@
 .static-background::before {
   content: "";
   position: absolute;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   inset: 0;
   background: linear-gradient(
     to bottom,
@@ -104,10 +111,12 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: url("assets/images/noisy-background.png");
-  background-size: 200px 200px;
-  opacity: 0.25; /* adjust texture intensity */
-  mix-blend-mode: overlay;
+  background: url("/src/assets/images/noisy-background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.15; /* REDUCED from 0.25 to 0.15 */
+  mix-blend-mode: multiply;
   z-index: 1;
 }
 
@@ -116,13 +125,52 @@
   z-index: 2;
 }
 
+/* Bottom Section Background */
+.static-background-bottom {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.static-background-bottom::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    #d2d3d4 0%,
+    #7d7d7e 50%,
+    #454646 100%
+  );
+  z-index: 0;
+}
+
+.static-background-bottom::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/src/assets/images/noisy-background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.1; /* Light texture for bottom section */
+  mix-blend-mode: multiply;
+  z-index: 1;
+}
+
+.static-background-bottom > * {
+  position: relative;
+  z-index: 2;
+}
 
 
 .money-image-background {
   position: relative;
-  padding: 6rem 2rem; /* reduce vertical spacing */
+  padding: 6rem 2rem;
   overflow: hidden;
-  min-height: 48vh; /* shorter height than before */
+  min-height: 48vh;
   display: flex;
   align-items: center;
 }
@@ -131,10 +179,10 @@
   content: "";
   position: absolute;
   top: 50%;
-  right: -8%; /* push image further right (partially offscreen) */
+  right: -8%;
   transform: translateY(-50%);
-  width: 110%;         /* control how much horizontal space it takes */
-  height: 110%;       /* slightly taller than container for good coverage */
+  width: 110%;
+  height: 110%;
   background-image: 
     linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("assets/images/money_tree.jpg");
@@ -146,14 +194,35 @@
   border-radius: 12px;
 }
 
-/* content sits above the pseudo image */
-.money-image-background > .content {
-  position: relative;
-  z-index: 2;
-  max-width: 55%; /* gives more horizontal room for text */
+/* Add texture overlay */
+.money-image-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 }
 
+/* content sits above the pseudo image and texture */
+.money-image-background > * {
+  position: relative;
+  z-index: 2;
+}
 
+/* Mobile: slightly fade background for readability */
+@media (max-width: 767px) {
+  .money-image-background {
+    padding: 4rem 0; /* Remove horizontal padding on mobile */
+  }
+  
+  .money-image-background::before {
+
+    top: 50%;
+    right: -20%;
+    transform: translateY(-50%);
+    width: 120%;
+    height: 110%;
+  }
+}
 
 
 
@@ -208,13 +277,15 @@
   html, body {
     overflow-x: hidden;
     max-width: 100%;
+    background-color: transparent;
   }
 
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Times New Roman', sans-serif;
     width: 100%;
    
     background-attachment: fixed;
+    background-color: transparent;
     min-height: 100%;
   }
 
@@ -237,7 +308,7 @@
   }
   
   .btn-journey-back:hover {
-    background-color: var(--color-gray-100);
+    background-color: var(--color-primary-200);
     border: 2px solid var(--color-accent-green-700);
   }
 

@@ -21,15 +21,18 @@ export const emergencyFundConfig = {
     
     // Only show amount selection if they don't have emergency fund
     if (journeyData.hasEmergencyFund === false) {
-        steps.push(SelectEmergencyAmount)
-        steps.push(EmergencyFundOptions)
+      steps.push(SelectEmergencyAmount)
+      steps.push(EmergencyFundOptions)
+    
+
+      if (journeyData.emergencyFundAccountType === 'bank' || journeyData.emergencyFundAccountType === 'other-broker') {
+          steps.push(EmergencyFundSummary)
+      } else {
+          steps.push(FidelitySetupGuide)
+      }
     }
-    console.log(journeyData.emergencyFundAccountType);
-    if (journeyData.emergencyFundAccountType === 'bank' || journeyData.emergencyFundAccountType === 'other-broker') {
-        steps.push(EmergencyFundSummary)
-    } else {
-        steps.push(FidelitySetupGuide)
-    }
+
+    steps.push(EmergencyFundSummary)
     
     
     return steps

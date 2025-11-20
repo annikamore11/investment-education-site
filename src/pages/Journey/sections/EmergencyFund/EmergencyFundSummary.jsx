@@ -25,7 +25,7 @@ const EmergencyFundSummary = ({ journeyData, nextStep, prevStep }) => {
       <div className="bg-primary-100 rounded-xl shadow-xl p-8 md:p-12">
   
         <div>
-          <div className="bg-green-50 border-2 border-green-300 rounded-xl p-8 mb-6 text-center">
+          <div className="bg-green-50 border-2 border-green-600 rounded-xl p-8 mb-6 text-center">
             <CheckCircle className="w-16 h-16 text-green-600 mx-auto mb-4" />
             <h2 className="text-2xl font-bold text-green-900 mb-2">
               Excellent Work!
@@ -35,8 +35,8 @@ const EmergencyFundSummary = ({ journeyData, nextStep, prevStep }) => {
             </p>
           </div>
 
-          <div className="bg-blue-50 border border-blue-300 rounded-xl p-6 mb-6">
-            <p className="text-sm text-blue-900">
+          <div className="bg-accent-purple-50 border border-accent-purple-300 rounded-xl p-6 mb-6">
+            <p className="text-sm text-accent-purple-900">
               <strong>Quick Check:</strong> Make sure your emergency fund is earning interest! If it's sitting in a regular checking/savings account earning 0%, consider moving it to a money market fund like SPAXX to earn ~5% annually.
             </p>
           </div>
