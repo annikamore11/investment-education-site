@@ -207,7 +207,7 @@ const JourneyFlow = () => {
       <div className={`mb-6 mt-10 md:mt-0
         ${isSidebarOpen
           ? 'w-full'
-          : 'max-w-6xl '
+          : 'max-w-6xl mx-auto'
         }
       `}>
         {/* Progress bar container */}
