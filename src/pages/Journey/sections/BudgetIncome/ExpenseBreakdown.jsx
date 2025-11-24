@@ -3,7 +3,7 @@ import { House, Car, Utensils, ShieldPlus, Receipt, Film } from 'lucide-react'
 
 const ExpenseBreakdown = ({ journeyData, updateJourneyData, nextStep, prevStep }) => {
   const [expenses, setExpenses] = useState({
-    housing: journeyData.expenseBreakdown?.housing || '',
+    rent: journeyData.expenseBreakdown?.rent || '',
     transportation: journeyData.expenseBreakdown?.transportation || '',
     food: journeyData.expenseBreakdown?.food || '',
     insurance: journeyData.expenseBreakdown?.insurance || '',

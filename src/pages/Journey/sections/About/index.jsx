@@ -1,6 +1,6 @@
 // sections/AboutYou/index.js
 
-// sections/About/index.jsx
+import AboutIntro from './AboutIntro'
 import EmploymentStatus from './Employment'
 import Employer401k from './Employer401k'
 import AgeRange from './AgeRange'
@@ -15,7 +15,7 @@ export const aboutConfig = {
   
   // Dynamic steps based on user's journey data
   getSteps: (journeyData) => {
-    const steps = [EmploymentStatus]
+    const steps = [AboutIntro, EmploymentStatus]
     
     // Only show 401k question if employed at company
     if (journeyData.employment === 'employed-company') {
@@ -35,7 +35,6 @@ export const aboutConfig = {
     return steps
   },
   
-  // Optional: Validation before section can be marked complete
   // Validation before section can be marked complete
   canComplete: (journeyData) => {
     // Must have employment and age
@@ -64,10 +63,10 @@ export const aboutConfig = {
   // No onComplete logic needed - just move to next section
   onComplete: null
 }
-  
 
 // Keep the array export for backwards compatibility if needed
 export const aboutSteps = [
+  AboutIntro,
   EmploymentStatus,
   Employer401k,
   AgeRange,

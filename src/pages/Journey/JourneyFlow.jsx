@@ -252,96 +252,98 @@ const JourneyFlow = () => {
     )
   }
 
-return (
-  <>
-    <div className="fixed inset-0 overflow-hidden static-background"></div>
-    <div className="fixed top-18 left-0 w-full border-b border-primary-400 z-50"></div>
-    <div className="min-h-screen relative" style={{ zIndex: 1 }}>
-      <div className="pt-16 relative">
-        
-        {/* Sidebar */}
-        <aside 
-          className={`
-            fixed top-0 left-0 bg-zinc-950 shadow-lg transition-transform duration-300 z-40 
-            md:border-r border-primary-400 md:border-primary-400
-            ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
-            w-full md:w-64 flex flex-col
-          `}
-          style={{ height: '100vh', paddingTop: '4rem' }}
-        >
-          <div className="flex items-center justify-between p-6">
-            <h2 className="text-xl font-bold text-primary-100">Your Journey</h2>
-            <button onClick={() => setIsSidebarOpen(false)} className="p-1 hover:bg-gray-700 rounded-lg">
-              <X className="w-5 h-5 text-primary-100" />
-            </button>
-          </div>
-          <nav className="flex-1 overflow-y-auto p-6 space-y-2">
-            {sectionConfigs.map((section) => {
-              const isCompleted = journeyData.sectionCompletion[section.id]
-              const isActive = currentSection === section.id
-              return (
-                <button
-                  key={section.id}
-                  onClick={() => goToSection(section.id)}
-                  className={`
-                    w-full text-left px-4 py-3 rounded-lg transition-all flex items-center justify-between
-                    ${isActive 
-                      ? 'bg-green-50 text-green-700 hover:bg-green-100' 
-                      : isCompleted 
-                        ? 'btn-journey-next shadow-md' 
-                        : 'bg-accent-purple-50 text-gray-800 opacity-50'
-                    }
-                  `}
+  return (
+    <>
+      <div className="fixed inset-0 overflow-hidden static-background"></div>
+      <div className="fixed top-18 left-0 w-full border-b border-primary-400 z-50"></div>
+      <div className="min-h-screen relative" style={{ zIndex: 1 }}>
+        <div className="pt-16 relative">
+          
+          {/* Sidebar - slides up when footer visible */}
+          <aside 
+            className={`
+              absolute top-0 left-0 bg-zinc-950 shadow-lg transition-transform duration-300 z-40 
+              md:border-r border-primary-400 md:border-primary-400
+              ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+              w-full md:w-64 flex flex-col
+            `}
+            style={{ height: '100vh', paddingTop: '4rem' }}
+          >
+            <div className="flex items-center justify-between p-6">
+              <h2 className="text-xl font-bold text-primary-100">Your Journey</h2>
+              <button onClick={() => setIsSidebarOpen(false)} className="p-1 hover:bg-gray-700 rounded-lg">
+                <X className="w-5 h-5 text-primary-100" />
+              </button>
+            </div>
+            <nav className="flex-1 overflow-y-auto p-6 space-y-2">
+              {sectionConfigs.map((section) => {
+                const isCompleted = journeyData.sectionCompletion[section.id]
+                const isActive = currentSection === section.id
+                return (
+                  <button
+                    key={section.id}
+                    onClick={() => goToSection(section.id)}
+                    className={`
+                      w-full text-left px-4 py-3 rounded-lg transition-all flex items-center justify-between
+                      ${isActive 
+                        ? 'bg-green-50 text-green-700 hover:bg-green-100' 
+                        : isCompleted 
+                          ? 'btn-journey-next shadow-md' 
+                          : 'bg-accent-purple-50 text-gray-800 opacity-50'
+                      }
+                    `}
+                  >
+                    <div className="font-medium">{section.title}</div>
+                    {isCompleted && !isActive && (
+                      <Check className="w-5 h-5 text-primary-100 flex-shrink-0" />
+                    )}
+                  </button>
+                )
+              })}
+            </nav>
+          </aside>
+
+          {/* Main Content */}
+          <div className={`transition-all duration-300 ${isSidebarOpen ? 'md:ml-64' : 'ml-0'}`}>
+            <div ref={mainContentRef} className="h-[calc(100vh-4rem)] overflow-y-auto">
+              <div className={` px-8 py-8 min-h-full
+              ${isSidebarOpen
+                ? 'max-w-6xl static-background'
+                : 'w-full static-background'
+              }
+              `}>
+                {/* Progress Bar - Only show for multi-step sections */}
+                {getCurrentSection()?.multipleSteps && getCurrentSteps().length > 1 && (
+                  <SectionProgressBar 
+                    currentStep={currentStepInSection + 1}
+                    totalSteps={getCurrentSteps().length}
+                  />
+                )}
+                {/* Render Step */}
+                <div 
+                  key={`${currentSection}-${currentStepInSection}`}
+                  className="fadeInCard"
                 >
-                  <div className="font-medium">{section.title}</div>
-                  {isCompleted && !isActive && (
-                    <Check className="w-5 h-5 text-primary-100 flex-shrink-0" />
-                  )}
-                </button>
-              )
-            })}
-          </nav>
-        </aside>
-        {/* Main Content */}
-        <div className={`transition-all duration-300 ${isSidebarOpen ? 'md:ml-64' : 'ml-0'}`}>
-          <div ref={mainContentRef} className="h-[calc(100vh-4rem)] overflow-y-auto">
-            <div className={` px-8 py-8 min-h-full
-            ${isSidebarOpen
-              ? 'max-w-6xl static-background'
-              : 'w-full static-background'
-            }
-            `}>
-              {/* Progress Bar - Only show for multi-step sections */}
-              {getCurrentSection()?.multipleSteps && getCurrentSteps().length > 1 && (
-                <SectionProgressBar 
-                  currentStep={currentStepInSection + 1}
-                  totalSteps={getCurrentSteps().length}
-                />
-              )}
-              {/* Render Step */}
-              <div 
-                key={`${currentSection}-${currentStepInSection}`}
-                className="fadeInCard"
-              >
-                {renderStep()}
+                  {renderStep()}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    {/* Hamburger button - COMPLETELY SEPARATE from everything else */}
-    {!isSidebarOpen && (
-      <button
-        onClick={() => setIsSidebarOpen(true)}
-        className="fixed top-20 left-4 bg-zinc-950 shadow-lg rounded-lg p-3 hover:bg-gray-700"
-        style={{ zIndex: 9999 }}
-      >
-        <Menu className="w-6 h-6 text-primary-100" />
-      </button>
-    )}
-  </>
-)
+
+      {/* Hamburger button - hide when footer visible */}
+      {!isSidebarOpen && (
+        <button
+          onClick={() => setIsSidebarOpen(true)}
+          className="fixed top-20 left-4 bg-zinc-950 shadow-lg rounded-lg p-3 hover:bg-gray-700 transition-transform duration-300"
+          style={{ zIndex: 9999 }}
+        >
+          <Menu className="w-6 h-6 text-primary-100" />
+        </button>
+      )}
+    </>
+  )
 }
 
 export default JourneyFlow

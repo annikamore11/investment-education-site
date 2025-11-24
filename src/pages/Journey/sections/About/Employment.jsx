@@ -31,19 +31,20 @@ const EmploymentStatus = ({ journeyData, updateJourneyData, nextStep, prevStep }
   return (
     
     <div className="w-full max-w-4xl mx-auto">
+      
       {/* Header Section */}
       <div className="text-center mt-10 mb-6 lg:mb-10">
         
         <h1 className="text-3xl md:text-4xl font-bold text-primary-100 mb-3">
           Employment Status
         </h1>
+      </div>
+      <div className="bg-primary-100 rounded-2xl shadow-lg p-8 md:p-10 ">
         
-        <p className="text-lg text-primary-200 max-w-2xl mx-auto">
+        <p className=" text-center text-xl text-primary-700 max-w-2xl mx-auto mb-6">
           Choose the option that best describes your current situation.
         </p>
-      </div>
 
-      <div className="bg-primary-100 rounded-2xl shadow-lg p-8 md:p-10">
         {/* Options - use grid for better horizontal use */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
           {employmentOptions.map(option => (

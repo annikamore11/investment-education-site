@@ -1,6 +1,6 @@
 import React from 'react'
 import { DollarSign, TrendingUp, Calendar, PiggyBank, Scale, HandCoins } from 'lucide-react'
-import BudgetPieChart from '../../../../components/charts/BudgetPieChart'
+import BudgetStackedBarChart from '../../../../components/charts/BudgetStackedBarChart'
 
 const BudgetSummary = ({ journeyData, nextStep, prevStep }) => {
   const income = journeyData.monthlyIncome || 0
@@ -116,7 +116,7 @@ const BudgetSummary = ({ journeyData, nextStep, prevStep }) => {
             } transition-colors`}>
               <div className="flex items-center space-x-3 col-span-2">
                 <PiggyBank className="w-5 h-5 text-gray-500" />
-                <span className="font-semibold text-gray-700">Available to Save</span>
+                <span className="font-semibold text-gray-700">Available to Save Monthly</span>
               </div>
               <div className={`text-right font-bold text-lg ${
                 leftover >= 0 ? 'text-green-700' : 'text-red-700'
@@ -136,7 +136,7 @@ const BudgetSummary = ({ journeyData, nextStep, prevStep }) => {
         <div className="space-y-6">
           
           {/* Pie Chart */}
-          <BudgetPieChart journeyData={journeyData} />
+          <BudgetStackedBarChart journeyData={journeyData} />
 
           {/* Insights */}
           <div className={`rounded-xl p-6 border-2 ${
@@ -144,7 +144,7 @@ const BudgetSummary = ({ journeyData, nextStep, prevStep }) => {
             leftover >= 0 ? 'bg-yellow-50 border-yellow-300' :
             'bg-red-50 border-red-300'
           }`}>
-            <h3 className="font-bold text-gray-900 mb-2">💡 Quick Insight</h3>
+            <h3 className="font-bold text-gray-900 mb-2">Quick Insight</h3>
             {leftover >= 500 && (
               <p className="text-gray-700">
                 Great! You have ${leftover.toLocaleString()} available to save and invest each month. We'll help you make the most of it.
@@ -157,7 +157,7 @@ const BudgetSummary = ({ journeyData, nextStep, prevStep }) => {
             )}
             {leftover <= 0 && (
               <p className="text-gray-700">
-                Your expenses match or exceed your income. Focus on building an emergency fund first, even if it's just $25-50/month.
+                Your expenses match or exceed your income. Focus on building an emergency fund first, even if it's just $25-50/month. Learn more in the next section.
               </p>
             )}
           </div>

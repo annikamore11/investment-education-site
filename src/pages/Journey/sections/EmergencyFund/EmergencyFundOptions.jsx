@@ -140,7 +140,7 @@ const EmergencyFundOptions = ({ journeyData, updateJourneyData, nextStep, prevSt
                 </p>
             </div>
             
-            <div className="bg-green-50 border border-green-600 rounded p-2">
+            <div className="bg-green-50 border border-primary-400 rounded p-2">
                 <p className="text-xs text-gray-600 mb-1">Money Market (3% - 5%)</p>
                 <p className="text-lg font-bold text-green-700">
                 ${spaxxValue.toLocaleString(undefined, {maximumFractionDigits: 0})}

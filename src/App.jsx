@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext'
 import Navbar from './components/Navbar'
-import Footer from './components/Footer'
+import AnimatedFooter from './components/Footer'
 import Home from './pages/Home'
 import JourneyFlow from './pages/Journey/JourneyFlow'
 import Retirement from './pages/investment_basics/Retirement'
@@ -32,7 +32,7 @@ function App() {
               <Route path="/login" element={<Login />} />
             </Routes>
           </main>
-          <Footer />
+          <AnimatedFooter />
         </div>
       </Router>
     </AuthProvider>

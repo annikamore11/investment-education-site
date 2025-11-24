@@ -60,7 +60,7 @@ const Home = () => {
   }
 
     return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-zinc-950">
       {/* Hero Section - Extended min-height on mobile */}
       <section className="flex items-center justify-center px-4 pt-20 min-h-[100vh] md:min-h-screen static-background">
         <div className="max-w-6xl w-full">
@@ -123,8 +123,7 @@ const Home = () => {
           <div className="text-center animate-slideUp pb-10">
             <Link
               to="/mode-selection"
-              className="inline-block bg-linear-to-r from-accent-green-500 to-accent-green-600 hover:from-accent-green-600 hover:to-accent-green-700 text-primary-100 
-              font-bold text-xl px-10 py-4 rounded-xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
+              className="inline-block btn-secondary font-bold text-xl px-10 py-4 rounded-xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
             >
               Get Started
             </Link>
@@ -138,7 +137,7 @@ const Home = () => {
           <div className="w-full px-4 md:px-0">
             <div className="w-full md:max-w-3xl text-left md:px-8">
               <motion.h2 
-                initial={{ opacity: 0, x: -50 }}
+                initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
@@ -148,7 +147,7 @@ const Home = () => {
               </motion.h2>
               
               <motion.p 
-                initial={{ opacity: 0, x: -50 }}
+                initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
@@ -179,7 +178,7 @@ const Home = () => {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.4 + (index * 0.15) }}
+                    transition={{ duration: 0.5 }}
                     className="bg-white/20 backdrop-blur-sm rounded-xl p-6 min-h-[180px] flex flex-col"
                   >
                     <h3 className="font-semibold text-lg mb-2 text-white">{card.title}</h3>
@@ -223,8 +222,7 @@ const Home = () => {
             >
               <Link
                 to="/mode-selection"
-                className="inline-block bg-linear-to-r from-accent-green-500 to-accent-green-600 hover:from-accent-green-600 hover:to-accent-green-700 
-                text-white text-xl font-bold px-10 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                className="inline-block btn-secondary text-xl font-bold px-10 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
               >
                 Start Your Journey →
               </Link>

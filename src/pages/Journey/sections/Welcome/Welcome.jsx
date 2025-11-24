@@ -4,7 +4,7 @@ import {  Shield, User, LogIn, Split, NotebookPen } from 'lucide-react'
 const Welcome = ({ nextStep }) => {
   return (
      <div className="w-full min-h-[calc(100vh-200px)] flex items-center justify-center px-4">
-      <div className="w-full max-w-6xl mx-auto">
+      <div className="w-full max-w-4xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-8">
           
@@ -18,63 +18,8 @@ const Welcome = ({ nextStep }) => {
         </div>
 
         {/* Two Column Layout */}
-        <div className="grid md:grid-cols-2 gap-6 mb-6">
-          {/* Column 1 - What to Expect */}
-          <div className="bg-primary-100 rounded-xl shadow-xl p-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-              What to Expect
-            </h2>
-            
-            <div className="space-y-5">
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-primary-200 rounded-lg flex items-center justify-center">
-                  <User className="w-6 h-6 text-accent-green-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 text-base mb-1">Personalized to You</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    Tailored education for your unique situation and financial goals.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-primary-200 rounded-lg flex items-center justify-center">
-                  <Shield className="w-6 h-6 text-accent-green-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 text-base mb-1">Safety First</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    Build your emergency fund before investing for long-term security.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-primary-200 rounded-lg flex items-center justify-center">
-                  <Split className="w-6 h-6 text-accent-green-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 text-base mb-1">Smart Strategy</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    Choose the right accounts and investment options for your timeline.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-primary-200 rounded-lg flex items-center justify-center">
-                  <NotebookPen className="w-6 h-6 text-accent-green-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 text-base mb-1">Complete Guidance</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    From opening accounts to setting up automated investing.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="gap-6 mb-6">
+          
 
           {/* Column 2 - Journey Steps */}
           <div className="bg-primary-100 rounded-xl shadow-xl p-6">

@@ -1,13 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { TrendingUp, DollarSign, TriangleAlert, Info } from 'lucide-react'
 
 const Income = ({ journeyData, updateJourneyData, nextStep, prevStep }) => {
   const [income, setIncome] = useState(journeyData.monthlyIncome || 0)
   const [customIncome, setCustomIncome] = useState('')
   const [taxPercentage, setTaxPercentage] = useState(journeyData.estimatedTaxPercentage || 25)
-  const [taxDollarAmount, setTaxDollarAmount] = useState('') // Add this new state
+  const [taxDollarAmount, setTaxDollarAmount] = useState(journeyData.estimatedTaxDollarAmount || '') // Add this new state
   
   const isSelfEmployed = journeyData.employment === 'self-employed'
+  const displayIncome = customIncome || income
+
+  // Sync tax dollar amount when income or tax percentage changes
+  useEffect(() => {
+    if (isSelfEmployed && taxPercentage && displayIncome > 0) {
+      const calculatedAmount = Math.round(displayIncome * (taxPercentage / 100))
+      setTaxDollarAmount(calculatedAmount.toString())
+    }
+  }, [displayIncome, taxPercentage, isSelfEmployed])
 
   const handleNext = () => {
     const finalIncome = customIncome || income
@@ -15,7 +24,8 @@ const Income = ({ journeyData, updateJourneyData, nextStep, prevStep }) => {
     
     if (isSelfEmployed) {
       updateJourneyData('estimatedTaxPercentage', taxPercentage)
-      updateJourneyData('estimatedTaxDollarAmount', taxDollarAmount)
+      const calculatedTaxAmount= Math.round(finalIncome * (taxPercentage / 100))
+      updateJourneyData('estimatedTaxDollarAmount', calculatedTaxAmount)
     }
     
     setTimeout(() => {
@@ -36,7 +46,6 @@ const Income = ({ journeyData, updateJourneyData, nextStep, prevStep }) => {
     }
   }
 
-  const displayIncome = customIncome || income
   
   // Calculate after-tax income for self-employed
   const afterTaxIncome = isSelfEmployed 
@@ -172,7 +181,7 @@ const Income = ({ journeyData, updateJourneyData, nextStep, prevStep }) => {
               </button>
             </div>
 
-           <div className="mb-4">
+            <div className="mb-4">
               <label className="block text-sm font-semibold text-gray-900 mb-1">
                 Or enter custom amount:
               </label>
@@ -208,7 +217,7 @@ const Income = ({ journeyData, updateJourneyData, nextStep, prevStep }) => {
 
                 {/* Dollar Amount Input */}
                 <div>
-                  <label className="block text-xs text-gray-600 mb-2 ml-5">Dollar Amount</label>
+                  <label className="block text-xs text-gray-600 mb-2">Dollar Amount</label>
                   <div className="flex items-center">
                     <span className="text-xl font-bold text-gray-700 mr-2">$</span>
                     <input

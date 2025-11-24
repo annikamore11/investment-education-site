@@ -1,58 +1,73 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useRef, useState } from 'react'
+import { SendHorizonal } from 'lucide-react'
 
-const Footer = () => {
+const AnimatedFooter = () => {
+  const [isVisible, setIsVisible] = useState(false)
+  const footerRef = useRef(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 1.0 } // Trigger when 30% visible
+    )
+
+    if (footerRef.current) {
+      observer.observe(footerRef.current)
+    }
+
+    return () => {
+      if (footerRef.current) {
+        observer.unobserve(footerRef.current)
+      }
+    }
+  }, [isVisible])
+
   return (
-    <footer className="bg-zinc-950 text-primary-100 mt-auto z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer ref={footerRef} className="relative bg-zinc-950 text-white py-16 overflow-hidden z-60">
+      {/* Footer content */}
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        <div className="grid md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-4">InvestEd</h3>
+            <h3 className="font-bold text-xl mb-4">Investment Journey</h3>
             <p className="text-gray-400">
-              Helping young investors learn the basics of saving and investing for a secure financial future.
+              Guiding you through your financial future, one step at a time.
             </p>
           </div>
-          
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/retirement" className="text-gray-400 hover:text-white">
-                  Retirement Basics
-                </Link>
-              </li>
-              <li>
-                <Link to="/account-types" className="text-gray-400 hover:text-white">
-                  Account Types
-                </Link>
-              </li>
-              <li>
-                <Link to="/investment-options" className="text-gray-400 hover:text-white">
-                  Investment Options
-                </Link>
-              </li>
-              <li>
-                <Link to="/strategies" className="text-gray-400 hover:text-white">
-                  Strategies
-                </Link>
-              </li>
+            <h4 className="font-semibold mb-4">Quick Links</h4>
+            <ul className="space-y-2 text-gray-400">
+              <li><a href="/journey" className="hover:text-green-500">Start Journey</a></li>
+              <li><a href="/about" className="hover:text-green-500">About</a></li>
+              <li><a href="/contact" className="hover:text-green-500">Contact</a></li>
             </ul>
           </div>
-          
           <div>
-            <h4 className="text-lg font-semibold mb-4">Disclaimer</h4>
-            <p className="text-gray-400 text-sm">
-              This website is for educational purposes only. Always consult with a qualified financial advisor before making investment decisions.
-            </p>
+            <h4 className="font-semibold mb-4">Legal</h4>
+            <ul className="space-y-2 text-gray-400">
+              <li><a href="/privacy" className="hover:text-green-500">Privacy Policy</a></li>
+              <li><a href="/terms" className="hover:text-green-500">Terms of Service</a></li>
+            </ul>
           </div>
         </div>
-        
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} InvestEd. All rights reserved.</p>
+        {/* Animated line with icon */}
+        {isVisible && (
+          <div className="animated-line-container mt-16 pt-8 max-w-6xl mx-auto">
+            <div className="animated-line"></div>
+              <div className="line-icon">
+                <SendHorizonal className="w-6 h-6 text-primary-500" />
+              </div>
+          </div>
+        )}
+        <div className="pt-8 text-center text-gray-400">
+          <p>&copy; 2025 Investment Journey. All rights reserved.</p>
         </div>
       </div>
     </footer>
   )
 }
 
-export default Footer
+export default AnimatedFooter

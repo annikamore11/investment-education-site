@@ -22,24 +22,7 @@ const EmergencyFundIntro = ({ journeyData, nextStep, prevStep }) => {
           </p>
         </div>
         {/* Why Emergency Fund */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-          <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
-              <AlertTriangle className="w-6 h-6 text-gray-600 mr-2" />
-              Life Happens
-            </h3>
-            <div className="space-y-2 text-gray-700 mb-4 text-left">
-              <p>• Car breaks down: $2,000 in repairs</p>
-              <p>• Lose your job: 3 months to find a new one</p>
-              <p>• Medical emergency: $5,000 deductible</p>
-              <p>• Need to move: First/last month rent + deposit</p>
-            </div>
-            <p className="text-gray-800 font-semibold">
-              Without savings, you'll rack up credit card debt or worse.
-            </p>
-          </div>
-        
-
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 mb-8">
         {/* What is Emergency Fund */}
           <div>
             <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
@@ -58,6 +41,22 @@ const EmergencyFundIntro = ({ journeyData, nextStep, prevStep }) => {
                 <p>✓ NOT for vacations or shopping</p>
               </div>
             </div>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+              <AlertTriangle className="w-6 h-6 text-gray-600 mr-2" />
+              Life Happens
+            </h3>
+            <div className="space-y-2 text-gray-700 mb-4 text-left">
+              <p>• Car breaks down: $2,000 in repairs</p>
+              <p>• Lose your job: 3 months to find a new one</p>
+              <p>• Medical emergency: $5,000 deductible</p>
+              <p>• Need to move: First/last month rent + deposit</p>
+            </div>
+            <p className="text-gray-800 font-semibold">
+              Without savings, you'll rack up credit card debt or worse.
+            </p>
           </div>
         </div>
 
